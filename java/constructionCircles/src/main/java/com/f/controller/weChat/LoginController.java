@@ -1,4 +1,4 @@
-package com.f.controller;
+package com.f.controller.weChat;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,7 +14,7 @@ import com.f.service.UserService;
  * @date:   2018年7月27日
  * @Description:登录
  */
-@Controller
+@Controller("weChat_Controller")
 public class LoginController {
 	
 	@Autowired

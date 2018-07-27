@@ -1,4 +1,4 @@
-package com.f.controller;
+package com.f.controller.weChat;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,7 +17,7 @@ import com.f.service.UserService;
  */
 @RequestMapping("user")
 @Controller
-public class UserController {
+public class WeChatUserController {
 	
 	@Autowired
 	private UserService userService;
