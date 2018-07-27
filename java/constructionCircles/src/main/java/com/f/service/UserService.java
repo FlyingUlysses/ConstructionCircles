@@ -6,7 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.f.dao.UserDAO;
+import com.f.entity.PageResultEntity;
 import com.f.entity.UserEntity;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 
 @Service
 public class UserService {
@@ -30,8 +33,11 @@ public class UserService {
 	 * @Description:根据用户类型标识查询用户列表
 	 * 0 为用户   1为伙伴员工  2为管理员
 	 */
-	public List<UserEntity> ListUser(Integer type) {
-		return userDao.ListUserByType(type);
+	public PageResultEntity<UserEntity> ListUser(Integer type) {
+		PageHelper.startPage(1, 10, "id desc");
+		List<UserEntity> listUserByType = userDao.ListUserByType(type);
+		PageResultEntity<UserEntity> pageResultEntity = new PageResultEntity<UserEntity>(listUserByType);
+		return pageResultEntity;
 	}
 	
 	

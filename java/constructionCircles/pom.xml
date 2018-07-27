@@ -26,6 +26,13 @@
 
 	<dependencies>
 	
+	<!-- pageHelper spring boot 版 -->
+		<dependency>
+		    <groupId>com.github.pagehelper</groupId>
+		    <artifactId>pagehelper-spring-boot-starter</artifactId>
+		    <version>1.2.5</version>
+		</dependency>
+		
 	<!-- commos-lang工具 -->	
 		<dependency>
 		    <groupId>org.apache.commons</groupId>
