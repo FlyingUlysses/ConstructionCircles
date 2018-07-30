@@ -1,0 +1,113 @@
+<include src="/pages/commonPage/common.wxml"></include>
+<import src="../../../wxParse/wxParse.wxml"></import>
+<import src="../temp/userDefined.wxml"></import>
+<view class="bgBox bgBoxImage" style="background:{{info.bgcolor}}; background-image:url({{info.bgimg.original_url}});background-size:100% 100%"></view>
+<block wx:for="{{info.temp}}" wx:for-index="tempIndex">
+    <block wx:if="{{item.name=='fwb'}}">
+        <block wx:if="{{item.data.display==='show'}}">
+            <view style="background:{{item.data.bgcolor}}" wx:if="{{item.data.full==1}}">
+                <template is="wxParse" data="{{wxParseData:article.nodes}}"></template>
+            </view>
+            <view style="padding:0 20rpx; background:{{item.data.bgcolor}}" wx:else>
+                <template is="wxParse" data="{{wxParseData:article.nodes}}"></template>
+            </view>
+        </block>
+    </block>
+    <block wx:elif="{{item.name=='marquee'}}">
+        <include src="/pages/userDefined/temp/marquee.wxml" wx:if="{{item.data.display==='show'}}"></include>
+    </block>
+    <block wx:elif="{{item.name=='activeslist'||item.name=='actives'}}">
+        <include src="/pages/userDefined/temp/activity.wxml" wx:if="{{item.data.display==='show'}}"></include>
+    </block>
+    <block wx:elif="{{item.name=='spacing'}}">
+        <view style="height:{{item.data.height}}px;background:{{item.data.bgcolor}}" wx:if="{{item.data.display==='show'}}"></view>
+    </block>
+    <block wx:elif="{{item.name=='navlist'}}">
+        <include src="/pages/userDefined/temp/navlist.wxml" wx:if="{{item.data.display==='show'}}"></include>
+    </block>
+    <block wx:elif="{{item.name=='form'}}">
+        <include src="/pages/userDefined/temp/form.wxml" wx:if="{{item.data.display==='show'}}"></include>
+    </block>
+    <block wx:elif="{{item.name=='slider'}}">
+        <include src="/pages/userDefined/temp/slider.wxml" wx:if="{{item.data.display==='show'}}"></include>
+    </block>
+    <block wx:elif="{{item.name=='community'}}">
+        <block wx:if="{{item.data.display==='show'}}">
+            <view class="bgfff" wx:if="{{item.data.list.length>0}}">
+                <view wx:for="{{item.data.list}}">
+                    <include src="/pages/commonPage/shequn/shequnList1.wxml"></include>
+                </view>
+            </view>
+        </block>
+    </block>
+    <block wx:elif="{{item.name=='learn'}}">
+        <block wx:if="{{item.data.display==='show'}}">
+            <view class="bgfff" wx:if="{{item.data.list.length>0}}">
+                <block wx:if="{{item.data.style==='1col_large'}}">
+                    <include src="/pages/commonPage/zhuanlan/zhuanlanList_1col_large.wxml" wx:for="{{item.data.list}}"></include>
+                </block>
+                <block wx:if="{{item.data.style==='1col'}}">
+                    <include src="/pages/commonPage/zhuanlan/zhuanlanList_1col.wxml" wx:for="{{item.data.list}}"></include>
+                </block>
+            </view>
+        </block>
+    </block>
+    <block wx:elif="{{item.name=='learndp'}}">
+        <block wx:if="{{item.data.display==='show'}}">
+            <view class="bgfff" wx:if="{{item.data.list.length>0}}">
+                <view class="pos" wx:for="{{item.data.list}}">
+                    <include src="/pages/commonPage/zhuanlan/danpinList1.wxml"></include>
+                </view>
+            </view>
+            <view catchtap="learnEvent" class="audeoPlayStatus" data-types="toAudeoDetail" wx:if="{{config.learn.openAudeoBtn==1}}">
+                <image src="https://www.haojian.cn/wximg/zhuanlan/audeoPlay.gif" wx:if="{{audeo_play_status}}"></image>
+                <image src="https://www.haojian.cn/wximg/zhuanlan/audeo_default.png" wx:else></image>
+            </view>
+        </block>
+    </block>
+    <block wx:elif="{{item.name=='newsList'}}">
+        <block wx:if="{{item.data.display==='show'}}">
+            <block wx:if="{{item.data.style==='normal'}}">
+                <view wx:if="{{item.data.list.length>0}}">
+                    <include src="/pages/commonPage/common/news/temp.wxml" wx:for="{{item.data.list}}"></include>
+                </view>
+            </block>
+            <block wx:elif="{{item.data.style==='pic_left'}}">
+                <view wx:if="{{item.data.list.length>0}}">
+                    <include src="/pages/commonPage/common/news/pic_left.wxml" wx:for="{{item.data.list}}"></include>
+                </view>
+            </block>
+            <block wx:elif="{{item.data.style==='2col'}}">
+                <view wx:if="{{item.data.list.length>0}}">
+                    <view class="flex_warp">
+                        <include src="/pages/commonPage/common/news/2col.wxml" wx:for="{{item.data.list}}"></include>
+                    </view>
+                </view>
+            </block>
+            <block wx:elif="{{item.data.style==='1col_large'}}">
+                <view wx:if="{{item.data.list.length>0}}">
+                    <include src="/pages/commonPage/common/news/1col_large.wxml" wx:for="{{item.data.list}}"></include>
+                </view>
+            </block>
+        </block>
+    </block>
+    <block wx:elif="{{item.name=='shoplist'||item.name=='shop'}}">
+        <include src="/pages/userDefined/temp/shopData.wxml" wx:if="{{item.data.display==='show'}}"></include>
+    </block>
+    <block wx:elif="{{item.name=='shopSeck'}}">
+        <include src="/pages/userDefined/temp/miaosa.wxml" wx:if="{{item.data.display==='show'}}"></include>
+    </block>
+    <block wx:elif="{{item.name=='shopGroup'}}">
+        <include src="/pages/userDefined/temp/pintuan.wxml" wx:if="{{item.data.display==='show'}}"></include>
+    </block>
+    <include src="/pages/userDefined/temp/slideimgs.wxml" wx:elif="{{item.name=='slideimgs'}}"></include>
+    <include src="/pages/userDefined/temp/slidenav.wxml" wx:elif="{{item.name=='slidenav'}}"></include>
+    <include src="/pages/userDefined/temp/window.wxml" wx:elif="{{item.name=='window'}}"></include>
+    <include src="/pages/userDefined/temp/imgs.wxml" wx:elif="{{item.name=='imgs'}}"></include>
+    <include src="/pages/userDefined/temp/btnAll.wxml" wx:elif="{{item.name=='but'}}"></include>
+    <block wx:else>
+        <template is="{{item.name}}" data="{{item:item}}" wx:if="{{item.data.display==='show'}}"></template>
+    </block>
+</block>
+<image bindtap="onBackTop" class="fixedBtn fixedBtn_1" src="https://www.haojian.cn/wximg/scrolltop.png" wx:if="{{showGoTop&&isPageScrollTo}}"></image>
+<include src="/pages/commonPage/copyright.wxml" wx:if="{{info.temp.length>0}}"></include>

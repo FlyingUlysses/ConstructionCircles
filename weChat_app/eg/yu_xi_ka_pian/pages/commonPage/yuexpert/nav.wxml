@@ -1,0 +1,10 @@
+<scroll-view class="scroll-view_H" scrollX="true">
+    <view bindtap="serverEvent" class="top-bar-item txt_center {{currentTab==0?'top-bar-active':''}}" data-idx="0" data-typeid="0" data-types="navbarTap">
+        <text style="color:#{{currentTab==0?peise.mcolor:''}}">全部</text>
+        <view class="top-bar-item_line" style="background:#{{peise.mcolor}}"></view>
+    </view>
+    <view bindtap="serverEvent" class="top-bar-item txt_center {{currentTab==index+1?'top-bar-active':''}}" data-idx="{{index+1}}" data-typeid="{{item.id}}" data-types="navbarTap" wx:for="{{yunavs}}" wx:key="unique">
+        <text style="color:#{{currentTab==index+1?peise.mcolor:''}}">{{item.name}}</text>
+        <view class="top-bar-item_line" style="background:#{{peise.mcolor}}"></view>
+    </view>
+</scroll-view>

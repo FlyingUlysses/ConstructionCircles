@@ -1,0 +1,2 @@
+<include src="/pages/comment/comment3.wxml" wx:if="{{productType==='news'}}"></include>
+<include src="/pages/comment/comment4.wxml" wx:if="{{productType==='activity'}}"></include>

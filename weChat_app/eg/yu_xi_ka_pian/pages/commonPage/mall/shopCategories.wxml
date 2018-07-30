@@ -1,0 +1,64 @@
+<view class="shopCategories">
+    <scroll-view class="categories_lf" scrollIntoView="{{mall.toView}}" scrollWithAnimation="true" scrollY="true">
+        <view catchtap="shopListEvent" class="categories_item pos txt_center {{currentTab===index?'active':''}} f26 c3" data-categoryid="{{item.id}}" data-current="{{index}}" data-types="swichNav" id="category_{{index}}" style="color:#{{currentTab===index?peise.mcolor:''}}" wx:for="{{navList}}">
+            <view class="plr20 box_b txt_center">{{item.name}}</view>
+        </view>
+    </scroll-view>
+    <block wx:if="{{seconNavL&&seconNavL.length>0}}">
+        <view catchtap="shopListEvent" class="madel_box" data-types="closeNav"></view>
+        <view class="secon_nav_box">
+            <view catchtap="shopListEvent" class="secon_nav_item {{mall.seconNav==item.id?'active':''}}" data-categoryid="{{item.id}}" data-current="{{index}}" data-types="seconNav" wx:for="{{seconNavL}}">{{item.name}}</view>
+        </view>
+    </block>
+    <view class="categories_rt">
+        <scroll-view scrollWithAnimation scrollY bindscroll="bindscrollTop" bindscrolltolower="scrolltolower" data-types="shopList" scrollTop="{{scrollTop}}">
+            <view class="shop_banner" wx:if="{{banner.length>0}}">
+                <include src="/pages/commonPage/banner.wxml"></include>
+            </view>
+            <block wx:if="{{requestStatus}}">
+                <view class="flex_warp shop_rt_box">
+                    <navigator class="shopItem bgfff" hoverClass="none" url="/pages/mall/pages/shopDetail/shopDetail?isMallODOpen=0&productId={{item.id}}" wx:for="{{mall.shopData}}">
+                        <image class="rt_shop_img" mode="scaleToFill" src="{{item.cover.thumb_small_url}}"></image>
+                        <view class="shop_text_info p20 box_b bgfff">
+                            <view class="clamp1 f28 c333">{{item.title}}</view>
+                            <view class="flex_between mt10">
+                                <text class="f24 cc" wx:if="{{config.shop.saleDisplay==1}}">销量：{{item.sale_count}}</text>
+                                <view class="msBiaoShi f20 cf txt_center" wx:if="{{item.seckilling}}">秒杀</view>
+                                <view class="msBiaoShi f20 cf txt_center" wx:if="{{item.groupon}}">拼团</view>
+                            </view>
+                            <view class="flex_between mt20 flex_items">
+                                <view class="flex_items" wx:if="{{item.seckilling}}">
+                                    <view class="f28 cff5">¥ {{item.seckilling.price_desc}}</view>
+                                    <view class="thr_line f24 cc">¥ {{item.price_desc}}</view>
+                                </view>
+                                <view class="flex_items" wx:elif="{{item.groupon}}">
+                                    <view class="f28 cff5">¥ {{item.groupon.price_desc}}</view>
+                                    <view class="thr_line f24 cc">¥ {{item.price_desc}}</view>
+                                </view>
+                                <view class="flex_items" wx:else>
+                                    <view class="f28 cff5">¥ {{item.price_desc}}</view>
+                                    <view class="thr_line f24 cc" wx:if="{{item.origin_price_desc}}">¥ {{item.origin_price_desc}}</view>
+                                </view>
+                            </view>
+                            <block wx:if="{{!item.seckilling&&!item.groupon}}">
+                                <view class="card_price_box mt10" wx:if="{{item.isMemberProduct&&item.member.isMember}}">
+                                    <view class="price_lf flex_start flex_items">
+                                        <image class="img_1" src="https://www.haojian.cn/wximg/market/card_price.png"></image>
+                                        <image class="img_2" src="https://www.haojian.cn/wximg/market/card_price_icon.png"></image>
+                                        <view class="f20 cf">会员价</view>
+                                    </view>
+                                    <view class="card_price">￥{{item.fee_member_desc}}</view>
+                                </view>
+                            </block>
+                        </view>
+                    </navigator>
+                </view>
+                <view class="noData f28 c6" wx:if="{{mall.shopData.length==0}}">暂无商品</view>
+                <view class="noNore pos" wx:if="{{!mall.hasNext&&mall.shopData.length!=0}}">
+                    <view class="noNore1"></view>
+                    <view class="noNore2 f32 c9 txt_center">没有更多数据了</view>
+                </view>
+            </block>
+        </scroll-view>
+    </view>
+</view>

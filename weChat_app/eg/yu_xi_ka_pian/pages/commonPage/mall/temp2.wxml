@@ -1,0 +1,41 @@
+<navigator hoverClass="none" url="/pages/mall/pages/shopDetail/shopDetail?isMallODOpen=0&productId={{item.id}}">
+    <view class="pb10">
+        <image class="shopList2_img" mode="scaleToFill" src="{{item.img.thumb_medium_url}}"></image>
+        <view class="p20 pos">
+            <view class="shopList2_tit flex_start flex_items">
+                <view class="f28 c3 clamp2">{{item.title}}</view>
+            </view>
+            <view class="flex_between mt10">
+                <text class="f24 cc" wx:if="{{config.shop.saleDisplay==1}}">销量：{{item.sale_count}}</text>
+                <view class="msBiaoShi f20 cf txt_center" wx:if="{{item.seckilling}}">秒杀</view>
+                <view class="msBiaoShi f20 cf txt_center" wx:if="{{item.groupon}}">拼团</view>
+            </view>
+            <view class="mt20">
+                <view class="flex_start flex_items">
+                    <block wx:if="{{item.seckilling}}">
+                        <view class="f30 cff5">¥ {{item.seckilling.price_desc}}</view>
+                        <view class="ml10 thr_line f24 cc">¥ {{item.price_desc}}</view>
+                    </block>
+                    <block wx:elif="{{item.groupon}}">
+                        <view class="f30 cff5">¥ {{item.groupon.price_desc}}</view>
+                        <view class="ml10 thr_line f24 cc">¥ {{item.price_desc}}</view>
+                    </block>
+                    <block wx:else>
+                        <view class="f30 cff5">¥ {{item.price_desc}}</view>
+                        <view class="ml10 thr_line f24 cc" wx:if="{{item.origin_price_desc}}">¥ {{item.origin_price_desc}}</view>
+                    </block>
+                </view>
+                <block wx:if="{{!item.seckilling&&!item.groupon}}">
+                    <view class="card_price_box mt10" wx:if="{{item.isMemberProduct&&item.member.isMember}}">
+                        <view class="price_lf flex_start flex_items">
+                            <image class="img_1" src="https://www.haojian.cn/wximg/market/card_price.png"></image>
+                            <image class="img_2" src="https://www.haojian.cn/wximg/market/card_price_icon.png"></image>
+                            <view class="f20 cf">会员价</view>
+                        </view>
+                        <view class="card_price">￥{{item.fee_member_desc}}</view>
+                    </view>
+                </block>
+            </view>
+        </view>
+    </view>
+</navigator>

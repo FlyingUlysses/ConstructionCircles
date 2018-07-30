@@ -1,0 +1,46 @@
+<view class="shopList0" wx:if="{{msList.length>0}}">
+    <navigator hoverClass="none" url="/pages/mall/pages/shopDetail/shopDetail?isMallODOpen=0&productId={{item.id}}" wx:if="{{item.seckilling}}" wx:for="{{msList}}">
+        <view class="mb20 bgfff mt20">
+            <view class="pos shopList0_img">
+                <image class="shopList0_img" mode="scaleToFill" src="{{item.cover.original_url}}"></image>
+                <view class="miaosa1 txt_center f24 cf">限时秒杀</view>
+            </view>
+            <view class="miaosa2">
+                <view class="flex_between plr30 box_b">
+                    <view class="cf">
+                        <text class="f26">¥</text>
+                        <text class="f46">{{item.seckilling.price1}}</text>
+                        <text class="f26">.{{item.seckilling.price2}}</text>
+                        <text class="f24 miaosa21 ml30 thr_line">¥ {{item.price_desc}}</text>
+                    </view>
+                    <view class="flex_start" wx:if="{{item.tiemStatus==0}}">
+                        <view class="f22 cf">距离结束仅剩</view>
+                        <view class="flex_start f20 ml20">
+                            <view class="miaosa2221d bgfff" wx:if="{{item.day}}">{{item.day}}天</view>
+                            <view class="miaosa2221 bgfff ml10">{{item.hour}}</view>
+                            <view class="miaosa2222 cf">:</view>
+                            <view class="miaosa2221 bgfff">{{item.minute}}</view>
+                            <view class="miaosa2222 cf">:</view>
+                            <view class="miaosa2221 bgfff">{{item.second}}</view>
+                        </view>
+                    </view>
+                    <view class="flex_start" wx:if="{{item.tiemStatus==1}}">
+                        <view class="f22 cf">活动开始时间</view>
+                        <view class="flex_start f20 ml20 cf">{{item.seckilling.applicable_condition.valid_from}}</view>
+                    </view>
+                </view>
+                <view class="flex_between plr30 box_b miaosa22">
+                    <view class="flex_start">
+                        <view class="miaosa2211 f20 bgfff">立减{{item.chaPrice}}元</view>
+                        <view class="miaosa2212 f20 cf">仅剩{{item.seckilling.stock_count}}件</view>
+                    </view>
+                    <view class="mashangqiang f26 pos" wx:if="{{item.tiemStatus==0}}">马上抢<image class="mashangqiang1" src="https://www.haojian.cn/wximg/mw3.png"></image>
+                    </view>
+                    <view class="mashangqiang f26 pos cc txt_center" style="text-indent:0" wx:if="{{item.tiemStatus==1}}">未开始</view>
+                    <view class="mashangqiang f26 pos cc txt_center" style="text-indent:0" wx:if="{{item.tiemStatus==2}}">已结束</view>
+                </view>
+            </view>
+            <view class="f32 c3 p30 box_b text_overflow">{{item.title}}</view>
+        </view>
+    </navigator>
+</view>

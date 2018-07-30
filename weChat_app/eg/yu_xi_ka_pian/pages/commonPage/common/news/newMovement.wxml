@@ -1,0 +1,73 @@
+<include src="/pages/commonPage/common.wxml"></include>
+<block wx:if="{{news_list_view_type==='circle'}}">
+    <block wx:if="{{requestStatus}}">
+        <view wx:if="{{list}}">
+            <view class="nm_1 bgfff mt20" wx:for="{{list}}">
+                <include src="circleTemp.wxml"></include>
+            </view>
+        </view>
+        <view class="null" wx:if="{{list.length==0}}">没有数据</view>
+        <include src="/pages/commonPage/copyright.wxml"></include>
+    </block>
+</block>
+<block wx:else>
+    <block wx:if="{{banner.length>0}}">
+        <view class="bgfff ptb20" wx:if="{{newsIssearch==1}}">
+            <view class="mewsSearch">
+                <view class="pos news_search_box">
+                    <image class="seaIcon" src="https://www.haojian.cn/wximg/search.png" wx:if="{{iconStatus}}"></image>
+                    <input bindblur="newsBlurInput" bindconfirm="newsEvent" bindfocus="hideIcon" confirmType="search" data-types="newsSearchBtn" placeholder="搜索" type="text" value="{{searchVal}}"></input>
+                </view>
+            </view>
+        </view>
+        <include src="/pages/commonPage/banner.wxml"></include>
+        <view id="tab" wx:if="{{navList.length>0}}">
+            <view class="top_bar f28 {{isTabFixed?'fixed_top':''}}">
+                <include src="nav.wxml"></include>
+            </view>
+        </view>
+    </block>
+    <block wx:if="{{banner.length==0}}">
+        <block wx:if="{{navList.length>0}}">
+            <view class="top_bar f28 newsNavFxied}}">
+                <include src="nav.wxml"></include>
+            </view>
+            <view class="space120"></view>
+        </block>
+        <view class="mewsSearch" wx:if="{{newsIssearch==1}}">
+            <view class="pos news_search_box bgfff">
+                <image class="seaIcon" src="https://www.haojian.cn/wximg/search.png" wx:if="{{iconStatus}}"></image>
+                <input bindblur="newsBlurInput" bindconfirm="newsEvent" bindfocus="hideIcon" confirmType="search" data-types="newsSearchBtn" placeholder="搜索" type="text" value="{{searchVal}}"></input>
+            </view>
+        </view>
+    </block>
+    <block wx:if="{{requestStatus}}">
+        <block wx:if="{{news_list_view_type==='normal'}}">
+            <view class="mt20" wx:if="{{list.length>0}}">
+                <include src="temp.wxml" wx:for="{{list}}"></include>
+            </view>
+        </block>
+        <block wx:elif="{{news_list_view_type==='pic_left'}}">
+            <view class="mt20" wx:if="{{list.length>0}}">
+                <include src="pic_left.wxml" wx:for="{{list}}"></include>
+            </view>
+        </block>
+        <block wx:elif="{{news_list_view_type==='2col'}}">
+            <view class="flex_warp mt20 bgfff" wx:if="{{list.length>0}}">
+                <include src="2col.wxml" wx:for="{{list}}"></include>
+            </view>
+        </block>
+        <block wx:elif="{{news_list_view_type==='1col_large'}}">
+            <view class="mt20" wx:if="{{list.length>0}}">
+                <include src="1col_large.wxml" wx:for="{{list}}"></include>
+            </view>
+        </block>
+        <view class="null" style="{{banner.length>0?'top:70%':''}}" wx:if="{{list.length==0}}">没有数据</view>
+        <view class="noNore pos" wx:if="{{!hasNext&&list.length!=0}}">
+            <view class="noNore1"></view>
+            <view class="noNore2 f32 c9 txt_center">没有更多数据了</view>
+        </view>
+        <include src="/pages/commonPage/copyright.wxml"></include>
+    </block>
+</block>
+<image bindtap="onBackTop" class="backTop" src="https://www.laihukeji.com/wximg/top_back.png" wx:if="{{showGoTop&&isPageScrollTo}}"></image>

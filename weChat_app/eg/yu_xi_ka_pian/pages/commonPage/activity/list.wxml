@@ -1,0 +1,36 @@
+<include src="/pages/commonPage/common.wxml"></include>
+<block wx:if="{{navList.length>0}}">
+    <view class="topBar f28 newsNavFxied">
+        <scroll-view class="scroll-view_H" scrollIntoView="{{info.toView}}" scrollX="true">
+            <view catchtap="onTapTag" class="top-bar-item txt_center {{index==info.activeIndex?'top-bar-active':''}}" data-id="{{item.id}}" data-index="{{index}}" data-type="{{listDataType}}" id="category_{{index}}" style="color:#{{index==info.activeIndex?peise.mcolor:''}}" wx:for="{{navList}}">{{item.name}}<view class="top-bar-item_line" style="background:#{{peise.mcolor}}"></view>
+            </view>
+        </scroll-view>
+    </view>
+    <view class="space120"></view>
+</block>
+<include src="/pages/commonPage/banner.wxml"></include>
+<block wx:if="{{requestStatus}}">
+    <block wx:if="{{info.temp_name}}">
+        <block wx:if="{{info.temp_name==='1col_large'}}">
+            <view class="mb20" wx:for="{{list}}">
+                <include src="1col_large.wxml"></include>
+            </view>
+        </block>
+        <block wx:elif="{{info.temp_name==='1col'}}">
+            <view class="mb20" wx:for="{{list}}">
+                <include src="1col.wxml"></include>
+            </view>
+        </block>
+        <view class="flex_warp plr10" wx:elif="{{info.temp_name==='2col'}}">
+            <view class="list3_1_1 mb20" wx:for="{{list}}">
+                <include src="2col.wxml"></include>
+            </view>
+        </view>
+    </block>
+    <view class="null" style="top:70%" wx:if="{{list.length==0}}">没有活动</view>
+    <view class="noNore pos" wx:if="{{!hasNext&&list.length!=0}}">
+        <view class="noNore1"></view>
+        <view class="noNore2 f32 c9 txt_center">没有更多数据了</view>
+    </view>
+    <include src="/pages/commonPage/copyright.wxml"></include>
+</block>

@@ -1,0 +1,26 @@
+<block wx:if="{{config.copyrightUrl}}">
+    <view class="{{logoPosBottom?'jishuzhichi':'jishuzhichi_m'}}" wx:if="{{config.copyright.style==='normal'}}">
+        <view bindtap="logoEvent" class="txt_center c9 f22" data-types="openWindow" data-url="{{config.copyrightUrl}}">
+            <view>好建小程序提供技术支持</view>
+            <view>www.haojian.cn</view>
+        </view>
+    </view>
+    <view class="{{logoPosBottom?'jishuzhichi':'jishuzhichi_m'}}" wx:if="{{config.copyright.style==='custom'&&config.copyright.custom_icon.original_url}}">
+        <image bindload="logoSize" bindtap="logoEvent" data-types="openWindow" data-url="{{config.copyrightUrl}}" src="{{config.copyright.custom_icon.original_url}}" style="width:{{config.copyright.width}}rpx; height:{{config.copyright.height}}rpx"></image>
+    </view>
+</block>
+<block wx:else>
+    <view class="{{logoPosBottom?'jishuzhichi':'jishuzhichi_m'}}" wx:if="{{config.copyright.style==='normal'}}">
+        <navigator hoverClass="none" url="/pages/common/pages/lhkj/lhkj">
+            <view class="txt_center c9 f22">
+                <view>好建小程序提供技术支持</view>
+                <view>www.haojian.cn</view>
+            </view>
+        </navigator>
+    </view>
+    <view class="{{logoPosBottom?'jishuzhichi':'jishuzhichi_m'}}" wx:if="{{config.copyright.style==='custom'&&config.copyright.custom_icon.original_url}}">
+        <navigator hoverClass="none" url="/pages/common/pages/about/about">
+            <image bindload="logoSize" src="{{config.copyright.custom_icon.original_url}}" style="width:{{config.copyright.width}}rpx; height:{{config.copyright.height}}rpx"></image>
+        </navigator>
+    </view>
+</block>

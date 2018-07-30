@@ -1,0 +1,37 @@
+<navigator hoverClass="none" url="/pages/zhuanlan/pages/zhuanlanDetail/zhuanlanDetail?index={{index}}&zhuanlanId={{item.target_id?item.target_id:item.id}}">
+    <view class="p30 bte9s flex_start">
+        <image lazyLoad class="zl_list_icol_img flex_shrink" mode="scaleToFill" src="{{item.cover.thumb_small_url}}"></image>
+        <view class="pl30 box_b flex_between flex_column flex1">
+            <view class="c3 clamp1 f32">{{item.title}}</view>
+            <view class="c3 flex_start flex_items pr30 box_b">
+                <view class="c9 f26 clamp1 flex1 mr20" wx:if="{{item.desc}}">{{item.desc}}</view>
+                <view class="flex_start f22 cc flex_shrink mr20" wx:if="{{info.joinNumStatue}}">
+                    <view class="brc pr20 clamp1 mr20" wx:if="{{item.update_hint}}">{{item.update_hint}}</view>
+                    <view>{{item.subscrib_count}}人订阅</view>
+                </view>
+                <view class="flex_start f22 cc flex_shrink" wx:elif="{{item.update_hint}}">
+                    <view class="clamp1" wx:if="{{item.update_hint}}">{{item.update_hint}}</view>
+                </view>
+            </view>
+            <view class="flex_between flex_items">
+                <view class="cff5 f32 flex_start flex_items" wx:if="{{item.fee>0}}">
+                    <view>
+                        <text class="f22">¥</text>{{item.fee}}</view>
+                    <view class="card_price_box ml20" wx:if="{{item.isMemberLearn&&item.member.isMember}}">
+                        <view class="price_lf flex_start flex_items">
+                            <image class="img_1" src="https://www.haojian.cn/wximg/market/card_price.png"></image>
+                            <image class="img_2" src="https://www.haojian.cn/wximg/market/card_price_icon.png"></image>
+                            <view class="f20 cf">会员价</view>
+                        </view>
+                        <view class="card_price">￥{{item.fee_member}}</view>
+                    </view>
+                </view>
+                <view class="cff5 f30" wx:else>免费</view>
+                <block wx:if="{{dybtn}}">
+                    <view class="zl_list_btn cc cf f24 txt_center" wx:if="{{item.has_subscribed}}">已订阅</view>
+                    <view class="zl_list_btn bgff5 cf f24 txt_center" wx:else>订阅</view>
+                </block>
+            </view>
+        </view>
+    </view>
+</navigator>

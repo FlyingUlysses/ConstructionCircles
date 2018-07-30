@@ -1,0 +1,63 @@
+<block wx:if="{{alterRequestStatus}}">
+    <view class="flex_column">
+        <view class="bgfff ptb20">
+            <view catchtap="settleEvent" class="mewsSearch" data-types="search">
+                <image class="seaIcon" src="https://www.haojian.cn/wximg/search.png"></image>
+                <view class="f26 cc">搜索</view>
+            </view>
+        </view>
+        <include src="/pages/commonPage/banner.wxml"></include>
+        <swiper class="topType bgfff" duration="1000" indicatorActiveColor="#666666" indicatorColor="#cccccc" indicatorDots="true" interval="3000" wx:if="{{typeName.length>1}}">
+            <swiper-item class="flex_warp bgfff" wx:for="{{typeName}}" wx:for-item="typeList">
+                <view class="smct_cls_item txt_center" wx:for="{{typeList}}">
+                    <view catchtap="settleEvent" data-item="{{item}}" data-types="class">
+                        <image class="settle_smct_cls_img" mode="scaleToFill" src="{{item.logo.thumb_small_url}}"></image>
+                        <view class="f24 c3 smct_cls_txt txt_center">{{item.name}}</view>
+                    </view>
+                </view>
+            </swiper-item>
+        </swiper>
+        <block wx:else>
+            <view class="flex_warp bgfff pb20" wx:for="{{typeName}}" wx:for-item="typeList">
+                <view class="smct_cls_item txt_center" wx:for="{{typeList}}">
+                    <view catchtap="settleEvent" data-item="{{item}}" data-types="class">
+                        <image class="settle_smct_cls_img" mode="scaleToFill" src="{{item.logo.thumb_small_url}}"></image>
+                        <view class="f24 c3 smct_cls_txt txt_center">{{item.name}}</view>
+                    </view>
+                </view>
+            </view>
+        </block>
+        <view class="mtb20 bgfff tuijian_box" wx:if="{{featured.length>0}}">
+            <view class="tit f30 c3 txt_center mt30">- 精选商家 -</view>
+            <view class="scroll_box">
+                <scroll-view scrollX style="width: auto;overflow:hidden">
+                    <navigator class="tuijian_item" hoverClass="none" url="/pages/settleIn/pages/storeDetail/storeDetail?id={{item.id}}" wx:for="{{featured}}">
+                        <view>
+                            <image class="tuijian_img" mode="scaleToFill" src="{{item.logo.thumb_medium_url}}"></image>
+                            <view class="f24 c6 mt20 mb40 txt_center text_overflow">{{item.businessName}}</view>
+                        </view>
+                    </navigator>
+                </scroll-view>
+            </view>
+        </view>
+        <include src="/pages/commonPage/settleIn/list.wxml"></include>
+    </view>
+    <view class="xuanfuBtn">
+        <image bindtap="settleEvent" class="fixedBtn_1" data-types="onBackTop" src="https://www.laihukeji.com/wximg/top_back.png" wx:if="{{showGoTop&&isPageScrollTo}}"></image>
+        <navigator hoverClass="none" url="/pages/settleIn/pages/information/information">
+            <view class="settle_btn" style="background: #{{peise.acolor}}">入驻</view>
+        </navigator>
+    </view>
+    <view catchtap="settleEvent" class="tankuang {{showSub}}" data-types="close"></view>
+    <view class="alter2 {{showSub}}">
+        <view class="alterTitle">
+            <view bindtap="settleEvent" class="alter2Close" data-types="close">
+                <image src="https://www.haojian.cn/wximg/close.png"></image>
+            </view>
+            <view class="txt_center f34 c3 bbe9s">选择二级分类</view>
+        </view>
+        <view class="fenlei_box flex_start flex_warp">
+            <view catchtap="settleEvent" class="f26 c6 text_overflow fenlei_item" data-id="{{item.id}}" data-types="subClass" wx:for="{{subList}}">{{item.name}}</view>
+        </view>
+    </view>
+</block>

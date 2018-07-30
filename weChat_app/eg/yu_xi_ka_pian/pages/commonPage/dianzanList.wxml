@@ -1,0 +1,20 @@
+<view class="plr30" wx:if="{{banner.length>0}}">
+    <view class="detailgg pos">
+        <view class="detailgg1"></view>
+        <view class="detailgg2 f32 c9 txt_center">广告</view>
+    </view>
+    <view class="detailggImg pos" wx:for="{{banner}}">
+        <image bindload="ImgLoad" bindtap="shopListEvent" data-index="{{index}}" data-types="openWindow" data-url="{{item.link}}" mode="scaleToFill" src="{{item.image.original_url}}" style="height:{{item.height}}rpx"></image>
+    </view>
+</view>
+<view class="bgfff mt20">
+    <view class="ptb30 f24 c3">
+        <view class="dianzanList1" style="border-left:6rpx solid #{{peise.mcolor}}">全部点赞（{{detail.like_count}}）</view>
+    </view>
+    <view class="bte9s p30 flex_start f24 flex_items">
+        <image class="dianzanList2_1" src="https://www.haojian.cn/wximg/shequn/dianzan2.png"></image>
+        <view class="dianzanList2_2" wx:if="{{detail.like_count==0}}">暂无人点赞</view>
+        <view class="dianzanList2_2" wx:else>{{likeName}}<text class="c3">{{detail.like_count>10?'等'+detail.like_count+'人觉得很赞':''}}</text>
+        </view>
+    </view>
+</view>

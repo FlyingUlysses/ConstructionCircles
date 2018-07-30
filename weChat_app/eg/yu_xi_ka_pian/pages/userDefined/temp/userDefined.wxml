@@ -1,0 +1,76 @@
+<template name="prepaid">
+    <view class="bgf2f3f4 box_b prepaid1">
+        <scroll-view class="program-list" scrollX="true">
+            <view class="prepaid1_1" wx:for="{{item.data.list}}" wx:for-item="list">
+                <navigator hoverClass="none" url="/pages/market/pages/recharge/balanceRecharge/balanceRecharge?id={{list.id}}">
+                    <view class="prepaid1_1_1 txt_center">
+                        <view class="f34 cf txt_center">{{list.name}}</view>
+                        <view class="f34 cf txt_center text_overflow">{{list.gift}}</view>
+                        <view class="prepaid_btn f24 cff5 bgfff">立即充值</view>
+                    </view>
+                </navigator>
+            </view>
+        </scroll-view>
+    </view>
+</template>
+<template name="shopCoupon">
+    <view class="bgf2f3f4 p30 box_b" wx:if="{{item.data.list.length>0}}">
+        <scroll-view class="program-list" scrollX="true">
+            <block wx:for="{{item.data.list}}">
+                <view catchtap="receiveCoupon" class="u_coupon" data-id="{{item.type_id}}" wx:if="{{item.status==='available'}}">
+                    <image class="couponBg" src="https://www.haojian.cn/wximg/coupon3.png"></image>
+                    <view class="u_coupon_c" style="width:55%">
+                        <view class="pt15 f34 cf pl30 mt10 text_overflow">{{item.value_desc}}</view>
+                        <view class="pl30 cf f20 text_overflow">{{item.applicable_desc}}</view>
+                    </view>
+                    <view class="u_coupon_2 f30 txt_center">
+                        <view>点击</view>
+                        <view class="u_coupon_2_2">领取</view>
+                    </view>
+                </view>
+                <view class="u_coupon" wx:else>
+                    <image class="couponBg" src="https://www.haojian.cn/wximg/coupon4.png"></image>
+                    <view class="u_coupon_c" style="width:55%">
+                        <view class="pt15 f34 cf pl30 mt10 text_overflow">{{item.value_desc}}</view>
+                        <view class="pl30 cf f20 text_overflow">{{item.applicable_desc}}</view>
+                    </view>
+                    <view class="u_coupon_2 f24 txt_center" wx:if="{{item.status==='taken'}}">
+                        <view class="cc">已领取</view>
+                    </view>
+                    <view class="u_coupon_2 f24 txt_center" wx:if="{{item.status==='unavailable'}}">
+                        <view class="cc">已领完</view>
+                    </view>
+                </view>
+            </block>
+        </scroll-view>
+    </view>
+</template>
+<template name="title">
+    <view style="border: {{item.data.borsize}}px {{item.data.borstyle}} {{item.data.borcolor}}; padding:{{item.data.borpadding}}px;background: {{item.data.bgcolor}}" wx:if="{{item.data.url==='contact'}}">
+        <button class="contactBtn" openType="contact" style="border-{{item.data.style}}: 3px solid {{item.data.bcolor}};font-size: {{item.data.size}};text-align: {{item.data.align}};color: {{item.data.color}};font-weight: {{item.data.weight}};background: {{item.data.bgcolor}};padding:0 12rpx">{{item.data.text}}</button>
+    </view>
+    <view bindtap="openWindow" data-url="{{item.data.url}}" style="border: {{item.data.borsize}}px {{item.data.borstyle}} {{item.data.borcolor}}; padding:{{item.data.borpadding}}px;background: {{item.data.bgcolor}}" wx:else>
+        <view class="title" style="border-{{item.data.style}}: 3px solid {{item.data.bcolor}};font-size: {{item.data.size}};text-align: {{item.data.align}};color: {{item.data.color}};font-weight: {{item.data.weight}}">{{item.data.text}}</view>
+    </view>
+</template>
+<template name="video">
+    <view style="height:225px; overflow:hidden">
+        <video controls customCache="false" id="myVideo" poster="{{item.data.img}}" src="{{item.data.src}}" style="width:100%"></video>
+    </view>
+</template>
+<template name="search">
+    <navigator hoverClass="none" url="/pages/common/pages/search/search">
+        <view style="background:{{item.data.bgcolor}}; padding:30rpx">
+            <view class="searchText" style="text-align: center">
+                <image class="searchIcon" src="https://www.haojian.cn/wximg/search.png"></image>
+                <text>{{item.data.placeholder}}</text>
+            </view>
+        </view>
+    </navigator>
+</template>
+<template name="line">
+    <view style="{{item.data.space==0?'':'margin:0 30rpx'}}">
+        <view class="fuzhuxian_1" style="border-bottom: 1rpx {{item.data.style}} {{item.data.bgcolor}}"></view>
+        <view class="fuzhuxian_1"></view>
+    </view>
+</template>

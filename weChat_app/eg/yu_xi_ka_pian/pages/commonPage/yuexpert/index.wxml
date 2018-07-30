@@ -1,0 +1,56 @@
+<block wx:if="{{banner.length>0}}">
+    <view class="bgfff ptb30">
+        <view class="mewsSearch">
+            <view class="pos news_search_box">
+                <image class="seaIcon" src="https://www.haojian.cn/wximg/search.png" wx:if="{{iconStatus}}"></image>
+                <input bindblur="newsBlurInput" bindconfirm="serverEvent" bindfocus="hideIcon" confirmType="search" data-types="search" placeholder="搜索" type="text"></input>
+            </view>
+        </view>
+    </view>
+    <include src="/pages/commonPage/banner.wxml"></include>
+    <view id="tab" wx:if="{{yunavs.length>0}}">
+        <view class="top_bar f28 {{isTabFixed?'fixed_top':''}}">
+            <include src="nav.wxml"></include>
+        </view>
+    </view>
+</block>
+<block wx:if="{{banner.length==0}}">
+    <view class="top_bar f28 newsNavFxied">
+        <include src="nav.wxml"></include>
+    </view>
+    <view class="space120"></view>
+    <view class="mewsSearch">
+        <view class="pos news_search_box bgfff">
+            <image class="seaIcon" src="https://www.haojian.cn/wximg/search.png" wx:if="{{iconStatus}}"></image>
+            <input bindblur="newsBlurInput" bindconfirm="serverEvent" bindfocus="hideIcon" confirmType="search" data-types="search" placeholder="搜索" type="text"></input>
+        </view>
+    </view>
+</block>
+<block wx:if="{{requestStatus}}">
+    <view class="plr30 box_b" wx:if="{{list.length>0}}">
+        <view class="listMenu mt30 bgfff ptb30 plr20 box_b pos" wx:for="{{list}}" wx:for-item="list">
+            <navigator class="flex_start" hoverClass="none" url="/pages/service/pages/personal/personal?idx={{list.id}}">
+                <image class="server_listImg flex_shrink" src="{{list.photo.thumb_small_url}}"></image>
+                <view class="flex1 pl30 box_b">
+                    <view class="flex_start flex_items mt10">
+                        <view class="bold f30 c3">{{list.name}}</view>
+                        <view class="f24 c3">（综合评分{{list.Grade}})</view>
+                    </view>
+                    <view class="f24 c6 mt10">{{list.intro}}</view>
+                    <view class="f22 c9 mt10">{{list.job}}|{{list.doneNum}}人预购</view>
+                </view>
+                <view class="server_button cf txt_center f26" style="background:#{{peise.mcolor}}">预约</view>
+            </navigator>
+        </view>
+    </view>
+    <view class="noDetail" wx:if="{{list.length==0}}">没有数据</view>
+    <view class="noNore pos" wx:if="{{!hasNext&&list.length!=0}}">
+        <view class="noNore1"></view>
+        <view class="noNore2 f32 c9 txt_center">没有更多数据了</view>
+    </view>
+</block>
+<view class="server_md">
+    <navigator hoverClass="none" url="/pages/common/pages/stores/stores/stores">
+        <image class="server_md" src="https://www.haojian.cn/wximg/appointment/md.png"></image>
+    </navigator>
+</view>

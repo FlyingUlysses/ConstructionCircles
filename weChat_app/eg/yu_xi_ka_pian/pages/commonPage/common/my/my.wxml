@@ -1,0 +1,279 @@
+<include src="/pages/commonPage/common.wxml"></include>
+<view class="my">
+    <view class="my1 pos txt_center pos" style="background:#{{peise.mcolor}}">
+        <button bindgetuserinfo="userInfoHandler" class="getUserInfo f30 c3 bgfff" openType="getUserInfo" wx:if="{{myInfo.avatar_url.thumb_small_url==''&&myInfo.displayname==''}}">点击授权</button>
+        <view wx:else>
+            <image class="my1_1 radius" mode="scaleToFill" src="{{myInfo.avatar_url.thumb_small_url}}"></image>
+            <view class="my1_2 f34 mt30 cf">{{myInfo.displayname}}</view>
+        </view>
+        <view class="my1_4 bgfff txt_left">
+            <navigator hoverClass="none" url="/pages/common/pages/editPersonInfo/editPersonInfo">
+                <view class="pos f22 flex_items">
+                    <view class="pl20" style="color:#{{peise.mcolor}}">编辑资料</view>
+                    <image class="my1_4_1_2" src="{{peise.editIcon}}"></image>
+                </view>
+            </navigator>
+        </view>
+    </view>
+    <view class="flex_warp bgfff pb30">
+        <view class="my_nav mt30">
+            <navigator hoverClass="none" url="/pages/market/pages/integral/myIntegral/myIntegral">
+                <image class="my_nav1" src="https://www.haojian.cn/wximg/my_point.png"></image>
+                <view class="my_nav2 f24 cb txt_center">{{mypoint}}</view>
+                <view class="f26 c6 txt_center">我的积分</view>
+            </navigator>
+        </view>
+        <view class="my_nav mt30">
+            <navigator hoverClass="none" url="/pages/market/pages/card/myCard/myCard">
+                <image class="my_nav1" src="https://www.haojian.cn/wximg/my_hy.png"></image>
+                <view class="my_nav2 f24 cb txt_center">{{membName}}</view>
+                <view class="f26 c6 txt_center">我的会员</view>
+            </navigator>
+        </view>
+        <view class="my_nav mt30">
+            <navigator hoverClass="none" url="/pages/market/pages/recharge/index/index">
+                <image class="my_nav1" src="https://www.haojian.cn/wximg/my_wallet.png"></image>
+                <view class="my_nav2 f24 cb txt_center">¥{{cash_balance}}</view>
+                <view class="f26 c6 txt_center">我的余额</view>
+            </navigator>
+        </view>
+        <view class="my_nav mt30" wx:if="{{config.modules.activity||config.modules.zhuanlan||config.modules.extension||config.modules.hongbao||config.modules.cashcard}}">
+            <navigator hoverClass="none" url="/pages/common/pages/myWallet/myWallet">
+                <image class="my_nav1" src="https://www.haojian.cn/wximg/my_hb.png"></image>
+                <view class="my_nav2 f24 cb txt_center">¥{{hongbao.balance}}</view>
+                <view class="f26 c6 txt_center">我的零钱</view>
+            </navigator>
+        </view>
+        <view class="my_nav mt30" wx:if="{{config.underlinePay==1}}">
+            <navigator hoverClass="none" url="/pages/common/pages/underlineCheck/underlineCheck">
+                <image class="my_nav1" src="https://www.haojian.cn/wximg/xxPay.png"></image>
+                <view class="my_nav2 f24 cb txt_center"></view>
+                <view class="f26 c6 txt_center">线下买单</view>
+            </navigator>
+        </view>
+    </view>
+    <view class="bgfff mt20 pl30 box_b hide" wx:for="{{list}}">
+        <view bindtap="myEvent" class="pos ptb30 flex_start flex_items {{item.show?'bbe9s':''}}" data-index="{{index}}" data-types="nav" wx:if="{{item.classList.length>0}}">
+            <image class="leftIcon" src="{{item.icon}}"></image>
+            <view class="f32 c3 ml20">{{item.name}}</view>
+            <image class="downIcon" src="https://www.haojian.cn/wximg/my/downIcon.png" wx:if="{{item.show}}"></image>
+            <image class="rightIcon" src="https://www.haojian.cn/wximg/right_icon.png" wx:if="{{!item.show}}"></image>
+        </view>
+        <view class="pos ptb30 flex_items" wx:if="{{item.classList.length==0}}">
+            <navigator class="flex_start flex_items" hoverClass="none" url="{{item.url}}">
+                <image class="leftIcon" src="{{item.icon}}"></image>
+                <view class="f32 c3 ml20">{{item.name}}</view>
+                <image class="rightIcon" src="https://www.haojian.cn/wximg/right_icon.png"></image>
+                <view class="my2_4 radius f20 cf txt_center" wx:if="{{info.myInfo.unread_message_count>0&&item.type=='message'}}">{{info.myInfo.unread_message_count}}</view>
+            </navigator>
+        </view>
+        <block wx:if="{{item.show&&item.classList.length>0}}">
+            <view class="ptb30 pos {{item.classList.length-1>itemIndex?'bbe9s':''}}" wx:if="{{itemList.show}}" wx:for="{{item.classList}}" wx:for-index="itemIndex" wx:for-item="itemList">
+                <navigator class="flex_start flex_items" hoverClass="none" url="{{itemList.url}}">
+                    <image class="pointIcon" src="https://www.haojian.cn/wximg//my/point.png"></image>
+                    <view class="f32 c3 ml30">{{itemList.name}}</view>
+                    <view class="my4_3 f26 c9" wx:if="{{itemList.desc}}">{{itemList.desc}}</view>
+                    <image class="rightIcon" src="https://www.haojian.cn/wximg/right_icon.png"></image>
+                </navigator>
+            </view>
+        </block>
+    </view>
+    <view class="my2 pos bgfff bbe9s mt20">
+        <navigator hoverClass="none" url="/pages/common/pages/myMessage/myMessage">
+            <image class="my2_1" src="https://www.haojian.cn/wximg/my_xx.png"></image>
+            <view class="my2_2 f32 c3">我的消息</view>
+            <image class="rightIcon" src="https://www.haojian.cn/wximg/right_icon.png"></image>
+            <view class="my2_4 radius f20 cf txt_center" wx:if="{{info.myInfo.unread_message_count>0}}">{{info.myInfo.unread_message_count}}</view>
+        </navigator>
+    </view>
+    <view class="my2 pos bgfff bbe9s" wx:if="{{config.modules.hongbao}}">
+        <navigator hoverClass="none" url="/pages/commandHb/pages/record/record">
+            <image class="my2_1 my2_1_1" src="https://www.haojian.cn/wximg/commandHb/hb15.png"></image>
+            <view class="my2_2 f32 c3">语音红包</view>
+            <image class="rightIcon" src="https://www.haojian.cn/wximg/right_icon.png"></image>
+        </navigator>
+    </view>
+    <view class="my2 pos bgfff bbe9s mt20" wx:if="{{config.modules.extension}}">
+        <navigator hoverClass="none" url="/pages/market/pages/extension/extensionCenter/extensionCenter">
+            <image class="my2_1" src="https://www.haojian.cn/wximg/tg.png"></image>
+            <view class="my2_2 f32 c3">推广中心</view>
+            <image class="rightIcon" src="https://www.haojian.cn/wximg/right_icon.png"></image>
+        </navigator>
+    </view>
+    <view class="mt20" wx:if="{{config.modules.bargain}}">
+        <view class="my2 pos bgfff bbe9s">
+            <navigator hoverClass="none" url="/pages/bargain/pages/bargainRecord/bargainRecord">
+                <image class="my2_1 my2_1_1" src="https://www.haojian.cn/wximg/my_o.png"></image>
+                <view class="my2_2 f32 c3">我的砍价</view>
+                <image class="rightIcon" src="https://www.haojian.cn/wximg/right_icon.png"></image>
+            </navigator>
+        </view>
+        <view class="my2 pos bgfff bbe9s">
+            <navigator hoverClass="none" url="/pages/bargain/pages/myOrder/myOrder">
+                <image class="my2_1 my2_1_4" src="https://www.haojian.cn/wximg/mall/mall_order.png"></image>
+                <view class="my2_2 f32 c3">砍价订单</view>
+                <image class="rightIcon" src="https://www.haojian.cn/wximg/right_icon.png"></image>
+            </navigator>
+        </view>
+        <view class="my2 pos bgfff bbe9s">
+            <navigator hoverClass="none" url="/pages/bargain/pages/afterSale/afterSale">
+                <image class="my2_1 my2_1_4" src="https://www.haojian.cn/wximg/mall/mall_order.png"></image>
+                <view class="my2_2 f32 c3">砍价售后</view>
+                <image class="rightIcon" src="https://www.haojian.cn/wximg/right_icon.png"></image>
+            </navigator>
+        </view>
+    </view>
+    <view class="bgfff mt20 mb20" wx:if="{{config.modules.easyYuyue}}">
+        <view class="my2 pos bgfff bbe9s">
+            <navigator hoverClass="none" url="/pages/appointment/pages/mine/mine">
+                <image class="my2_1" src="https://www.haojian.cn/wximg/yy_icon.png"></image>
+                <view class="my2_2 f32 c3">我的预约</view>
+                <image class="rightIcon" src="https://www.haojian.cn/wximg/right_icon.png"></image>
+            </navigator>
+        </view>
+    </view>
+    <view class="bgfff mt20 mb20" wx:if="{{config.modules.appointment}}">
+        <view class="my2 pos bgfff bbe9s">
+            <navigator hoverClass="none" url="/pages/service/pages/Myoders/Myoders">
+                <image class="my2_1" src="https://www.haojian.cn/wximg/appointment/serviceIcon.png"></image>
+                <view class="my2_2 f32 c3">我的预约(专家版)</view>
+                <image class="rightIcon" src="https://www.haojian.cn/wximg/right_icon.png"></image>
+            </navigator>
+        </view>
+    </view>
+    <view class="bgfff mt20 mb20" wx:if="{{config.modules.hotel}}">
+        <view class="my2 pos bgfff bbe9s">
+            <navigator hoverClass="none" url="/pages/hotel/pages/Myoders/Myoders">
+                <image class="my2_1 hotel_myIcon" src="https://www.haojian.cn/wximg/hotel/myIcon.png"></image>
+                <view class="my2_2 f32 c3">我的预约(酒店)</view>
+                <image class="rightIcon" src="https://www.haojian.cn/wximg/right_icon.png"></image>
+            </navigator>
+        </view>
+    </view>
+    <view class="bgfff mt20 mb20" wx:if="{{config.modules.carpool}}">
+        <view class="my2 pos bgfff bbe9s">
+            <navigator hoverClass="none" url="/pages/car/pages/mine/mine">
+                <image class="my2_1" src="https://www.haojian.cn/wximg/car/carIcon.png"></image>
+                <view class="my2_2 f32 c3">我的拼车</view>
+                <image class="rightIcon" src="https://www.haojian.cn/wximg/right_icon.png"></image>
+            </navigator>
+        </view>
+    </view>
+    <view class="bgfff mt20 mb20" wx:if="{{config.modules.activity}}">
+        <view class="my2 pos bgfff bbe9s">
+            <navigator hoverClass="none" url="/pages/activity/pages/myOrder/myOrder">
+                <image class="my2_1 my2_1_1" src="https://www.haojian.cn/wximg/my_o.png"></image>
+                <view class="my2_2 f32 c3">我的报名</view>
+                <image class="rightIcon" src="https://www.haojian.cn/wximg/right_icon.png"></image>
+            </navigator>
+        </view>
+        <view class="my2 pos bgfff bbe9s" wx:if="{{is_verify}}">
+            <navigator hoverClass="none" url="/pages/activity/pages/yanpiao/yanpiao">
+                <image class="my2_1 my2_1_1" src="https://www.haojian.cn/wximg/my_a.png"></image>
+                <view class="my2_2 f32 c3">活动验票</view>
+                <view class="my4_3 f26 c9">限活动发布者和验票员使用</view>
+                <image class="rightIcon" src="https://www.haojian.cn/wximg/right_icon.png"></image>
+            </navigator>
+        </view>
+    </view>
+    <view class="mt20" wx:if="{{config.modules.dianCan}}">
+        <view class="my2 pos bgfff bbe9s">
+            <navigator hoverClass="none" url="/pages/dianCan/pages/myTakeout/myTakeout">
+                <image class="my2_1 couponIcon" src="https://www.haojian.cn/wximg/cy2icon.png"></image>
+                <view class="my2_2 f32 c3">我的点餐</view>
+                <image class="rightIcon" src="https://www.haojian.cn/wximg/right_icon.png"></image>
+            </navigator>
+        </view>
+    </view>
+    <block wx:if="{{config.modules.zhuanlan}}">
+        <view class="my2 pos bgfff bbe9s mt20">
+            <navigator hoverClass="none" url="/pages/zhuanlan/pages/mySubscription/mySubscription">
+                <image class="my2_1" src="https://www.haojian.cn/wximg/my_dy.png"></image>
+                <view class="my2_2 f32 c3">我的订阅</view>
+                <image class="rightIcon" src="https://www.haojian.cn/wximg/right_icon.png"></image>
+            </navigator>
+        </view>
+        <view class="my2 pos bgfff bbe9s">
+            <navigator hoverClass="none" url="/pages/zhuanlan/pages/myGift/myGift">
+                <image class="my2_1" src="https://www.haojian.cn/wximg/my_give.png"></image>
+                <view class="my2_2 f32 c3">我的赠送</view>
+                <image class="rightIcon" src="https://www.haojian.cn/wximg/right_icon.png"></image>
+            </navigator>
+        </view>
+    </block>
+    <view class="my2 pos bgfff bbe9s" wx:if="{{config.modules.shequn}}">
+        <navigator hoverClass="none" url="/pages/shequn/pages/myShequn/myShequn">
+            <image class="my2_1" src="https://www.haojian.cn/wximg/ad6.png"></image>
+            <view class="my2_2 f32 c3">我的社群</view>
+            <image class="rightIcon" src="https://www.haojian.cn/wximg/right_icon.png"></image>
+        </navigator>
+    </view>
+    <view class="mt20 my2 pos bgfff bbe9s" wx:if="{{config.modules.form}}">
+        <navigator hoverClass="none" url="/pages/form/pages/formOrder/formOrder">
+            <image class="my2_1" src="https://www.haojian.cn/wximg/mall/mall_order.png"></image>
+            <view class="my2_2 f32 c3">我的表单</view>
+            <image class="rightIcon" src="https://www.haojian.cn/wximg/right_icon.png"></image>
+        </navigator>
+    </view>
+    <view class="mt20" wx:if="{{config.modules.mall}}">
+        <view class="my2 pos bgfff bbe9s">
+            <navigator hoverClass="none" url="/pages/mall/pages/order/order">
+                <image class="my2_1 my2_1_4" src="https://www.haojian.cn/wximg/mall/mall_order.png"></image>
+                <view class="my2_2 f32 c3">我的订单</view>
+                <image class="rightIcon" src="https://www.haojian.cn/wximg/right_icon.png"></image>
+            </navigator>
+        </view>
+        <view class="my2 pos bgfff bbe9s">
+            <navigator hoverClass="none" url="/pages/market/pages/coupon/myCoupon/myCoupon">
+                <image class="my2_1 couponIcon" src="https://www.haojian.cn/wximg/coupon.png"></image>
+                <view class="my2_2 f32 c3">我的优惠券</view>
+                <image class="rightIcon" src="https://www.haojian.cn/wximg/right_icon.png"></image>
+            </navigator>
+        </view>
+        <view class="my2 pos bgfff bbe9s">
+            <navigator hoverClass="none" url="/pages/mall/pages/shopCart/shopCart">
+                <image class="my2_1" src="https://www.haojian.cn/wximg/my_sc.png"></image>
+                <view class="my2_2 f32 c3">购物车</view>
+                <image class="rightIcon" src="https://www.haojian.cn/wximg/right_icon.png"></image>
+            </navigator>
+        </view>
+        <view class="my2 pos bgfff bbe9s">
+            <navigator hoverClass="none" url="/pages/mall/pages/applyRecord/applyRecord">
+                <image class="my2_1" src="https://www.haojian.cn/wximg/my_tk.png"></image>
+                <view class="my2_2 f32 c3">我的售后</view>
+                <image class="rightIcon" src="https://www.haojian.cn/wximg/right_icon.png"></image>
+            </navigator>
+        </view>
+    </view>
+    <view class="mt20" wx:if="{{config.modules.business}}">
+        <view class="my2 pos bgfff bbe9s">
+            <navigator hoverClass="none" url="/pages/settleIn/pages/myStores/myStores">
+                <image class="my2_1 my2_1_4" src="https://www.haojian.cn/wximg/mall/mall_order.png"></image>
+                <view class="my2_2 f32 c3">我的店铺</view>
+                <image class="rightIcon" src="https://www.haojian.cn/wximg/right_icon.png"></image>
+            </navigator>
+        </view>
+        <view class="my2 pos bgfff bbe9s">
+            <navigator hoverClass="none" url="/pages/settleIn/pages/couponList/couponList">
+                <image class="my2_1 couponIcon" src="https://www.haojian.cn/wximg/coupon.png"></image>
+                <view class="my2_2 f32 c3">门店优惠券</view>
+                <image class="rightIcon" src="https://www.haojian.cn/wximg/right_icon.png"></image>
+            </navigator>
+        </view>
+        <view class="my2 pos bgfff bbe9s">
+            <navigator hoverClass="none" url="/pages/settleIn/pages/myOrder/myOrder">
+                <image class="my2_1" src="https://www.haojian.cn/wximg/my_sc.png"></image>
+                <view class="my2_2 f32 c3">入驻订单</view>
+                <image class="rightIcon" src="https://www.haojian.cn/wximg/right_icon.png"></image>
+            </navigator>
+        </view>
+    </view>
+    <view class="my2 pos bgfff bbe9s mt20">
+        <navigator hoverClass="none" url="/pages/common/pages/set/set">
+            <image class="my2_1" src="https://www.haojian.cn/wximg/set.png"></image>
+            <view class="my2_2 f32 c3">设置中心</view>
+            <image class="rightIcon" src="https://www.haojian.cn/wximg/right_icon.png"></image>
+        </navigator>
+    </view>
+</view>
+<include src="/pages/commonPage/copyright.wxml"></include>

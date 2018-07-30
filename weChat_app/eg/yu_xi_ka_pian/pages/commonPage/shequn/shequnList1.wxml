@@ -1,0 +1,36 @@
+<navigator hoverClass="none" url="/pages/shequn/pages/shequn/shequn?shequnId={{item.id}}&index={{index}}" wx:if="{{item.is_member}}">
+    <view class="pos flex_start p30 bte9s">
+        <image class="sq_icon flex_shrink" mode="scaleToFill" src="{{item.cover.thumb_small_url}}"></image>
+        <view class="pl30 box_b flex_around flex_items flex1">
+            <view class="flex1 ptb10 box_b pr20">
+                <view class="f32 c3 clamp1">{{item.name}}</view>
+                <view class="mt30 c9 f22 flex_start" wx:if="{{joinNumStatue==='show'}}">
+                    <view class="pr20 brcs">{{item.member_count}}人加入</view>
+                    <view class="ml20">{{item.thread_count}}条动态</view>
+                </view>
+                <view class="mt30 c9 f22 flex_start" wx:else>
+                    <view>{{item.thread_count}}条动态</view>
+                </view>
+            </view>
+            <view class="xiaoSheQun_list_btn f28 c9 txt_center">已加入</view>
+        </view>
+    </view>
+</navigator>
+<navigator hoverClass="none" url="/pages/shequn/pages/shequn/shequn?shequnId={{item.id}}&index={{index}}" wx:else>
+    <view class="pos flex_start p30 bte9s">
+        <image class="sq_icon flex_shrink" mode="scaleToFill" src="{{item.cover.thumb_small_url}}"></image>
+        <view class="pl30 box_b flex_around flex_items flex1">
+            <view class="flex1 ptb10 box_b pr20">
+                <view class="f32 c3 clamp1">{{item.name}}</view>
+                <view class="mt30 c9 f22 flex_start" wx:if="{{joinNumStatue==='show'}}">
+                    <view class="pr20 brcs">{{item.member_count}}人加入</view>
+                    <view class="ml20">{{item.thread_count}}条动态</view>
+                </view>
+                <view class="mt30 c9 f22 flex_start" wx:else>
+                    <view>{{item.thread_count}}条动态</view>
+                </view>
+            </view>
+            <view class="xiaoSheQun_list_btn f28 cf txt_center" style="background:#{{peise.mcolor}}">加入</view>
+        </view>
+    </view>
+</navigator>

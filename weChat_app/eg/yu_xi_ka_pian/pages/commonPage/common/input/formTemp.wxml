@@ -1,0 +1,95 @@
+<block wx:for="{{lists}}">
+    <view class="f30 c3 mb10" wx:if="{{item.type==='label'}}">{{item.name}}</view>
+    <view class="ptb20" wx:if="{{item.type=='single_line'||item.typeid==0}}">
+        <view class="f32 c0 bold">{{item.title}}<text class="color-red f26" wx:if="{{item.isMust==1}}">*</text>
+        </view>
+        <input bindinput="inputEvent" class="f28 inp form_choose_box mt10" data-index="{{index}}" data-inp="{{index}}" data-types="singleline" name="{{item.id}}" placeholder="请输入{{item.title}}" value="{{item.value}}"></input>
+    </view>
+    <view class="ptb20" wx:if="{{item.type=='multiple_line'||item.typeid==1}}">
+        <view class="f32 c0 bold">{{item.title}}<text class="color-red f26" wx:if="{{item.isMust==1}}">*</text>
+        </view>
+        <view class="form_choose_box p20 box_b mt20">
+            <view bindtap="inputEvent" class="mulText f28" data-index="{{index}}" data-types="textMultipleFocus" data-val="{{item.value}}" wx:if="{{!item.textMul}}">{{item.value}}</view>
+            <textarea focus bindblur="inputEvent" class="mulText c0 f28" data-index="{{index}}" data-types="inputText" maxlength="-1" name="{{item.id}}" placeholder="请输入内容" placeholderClass="c0 f28" value="{{item.value}}" wx:else></textarea>
+        </view>
+    </view>
+    <view class="ptb20" wx:elif="{{item.type=='single_choice'||item.typeid==2}}">
+        <view class="f32 c0 bold">{{item.title}}<text class="color-red f26" wx:if="{{item.isMust==1}}">*</text>
+        </view>
+        <view class="form_choose_box p20 box_b mt20">
+            <radio-group bindchange="inputEvent" data-index="{{index}}" data-types="radioChange">
+                <label wx:for="{{item.choice}}" wx:for-index="idx" wx:for-item="radio">
+                    <view class="ptb10 c0 f28 flex_start flex_items">
+                        <radio checked="{{radio.checked}}" style="width:40rpx;height:40rpx" value="{{radio.name}}_{{idx}}"></radio>
+                        <view class="ml20">{{radio.name}}</view>
+                    </view>
+                </label>
+            </radio-group>
+        </view>
+    </view>
+    <view class="ptb20" wx:elif="{{item.type=='multiple_choice'||item.typeid==3}}">
+        <view class="f32 c0 bold">{{item.title}}<text class="color-red f26" wx:if="{{item.isMust==1}}">*</text>
+        </view>
+        <view class="form_choose_box p20 box_b mt20">
+            <checkbox-group bindchange="inputEvent" data-index="{{index}}" data-types="checkboxChange" name="{{item.id}}">
+                <label wx:for="{{item.choice}}" wx:for-index="idx" wx:for-item="itemName">
+                    <view class="ptb20 c0 f28 flex_start flex_items">
+                        <checkbox checked="{{itemName.checked}}" style="width:40rpx;height:40rpx" value="{{itemName.name}}_{{idx}}"></checkbox>
+                        <view class="ml20">{{itemName.name}}</view>
+                    </view>
+                </label>
+            </checkbox-group>
+        </view>
+    </view>
+    <view class="ptb20" wx:elif="{{item.type=='picture'||item.typeid==4}}">
+        <view class="f32 c0 bold">{{item.title}}<text class="color-red f26" wx:if="{{item.isMust==1}}">*</text>
+        </view>
+        <view class="flex_warp p30 box_b mt20 form_choose_box">
+            <view class="photo_upview" wx:for="{{item.value}}" wx:for-index="imgindex" wx:for-item="imgItem">
+                <image bindtap="inputEvent" class="close" data-imgindex="{{imgindex}}" data-index="{{index}}" data-types="removeImg" src="https://www.haojian.cn/wximg/appointment/close2.png"></image>
+                <image bindtap="inputEvent" class="upimg1" data-imgindex="imgindex" data-index="{{index}}" data-types="seeBigImg" src="{{imgItem}}"></image>
+            </view>
+            <view bindtap="inputEvent" class="photo_up pos" data-index="{{index}}" data-num="9" data-types="uploadImgs" wx:if="{{item.value.length<9}}">
+                <image class="up_image" src="https://www.haojian.cn/wximg/appointment/add.png"></image>
+            </view>
+        </view>
+    </view>
+    <view class="ptb20" wx:elif="{{item.type=='datetime'||item.typeid==5}}">
+        <view class="f32 c0 bold">{{item.title}}<text class="color-red f26" wx:if="{{item.isMust==1}}">*</text>
+        </view>
+        <view class="flex_between flex_items">
+            <view class="inp form_choose_box mt20 f28 pos flex1">
+                <picker bindchange="inputEvent" data-datatypes="d" data-index="{{index}}" data-types="dateChange" mode="date" start="{{item.value.sd5}}">
+                    <view class="picker">{{item.value.d5}}</view>
+                    <image class="form_rl_icon" src="https://www.haojian.cn/wximg/calendar_icon.png"></image>
+                </picker>
+            </view>
+            <view class="ml30 inp form_choose_box mt20 f28 pos flex1">
+                <picker bindchange="inputEvent" data-datatypes="t" data-index="{{index}}" data-types="dateChange" mode="time" start="{{item.value.st5}}">
+                    <view class="picker f32">{{item.value.t5}}</view>
+                    <image class="down" src="https://www.haojian.cn/wximg/appointment/down.png"></image>
+                </picker>
+            </view>
+        </view>
+    </view>
+    <view class="ptb20" wx:elif="{{item.type=='date'||item.typeid==6}}">
+        <view class="f32 c0 bold">{{item.title}}<text class="color-red f26" wx:if="{{item.isMust==1}}">*</text>
+        </view>
+        <view class="inp form_choose_box mt20 f28 pos">
+            <picker bindchange="inputEvent" data-datatypes="d" data-index="{{index}}" data-types="dateChange" mode="date" start="{{item.startDate}}">
+                <view class="picker">{{item.value}}</view>
+                <image class="form_rl_icon" src="https://www.haojian.cn/wximg/calendar_icon.png"></image>
+            </picker>
+        </view>
+    </view>
+    <view class="ptb20" wx:elif="{{item.type=='time'||item.typeid==7}}">
+        <view class="f32 c0 bold">{{item.title}}<text class="color-red f26" wx:if="{{item.isMust==1}}">*</text>
+        </view>
+        <view class="inp form_choose_box mt20 f28 pos">
+            <picker bindchange="inputEvent" data-datatypes="t" data-index="{{index}}" data-types="dateChange" mode="time" start="{{item.startTime}}">
+                <view class="picker">{{item.value}}</view>
+                <image class="down" src="https://www.haojian.cn/wximg/appointment/down.png"></image>
+            </picker>
+        </view>
+    </view>
+</block>

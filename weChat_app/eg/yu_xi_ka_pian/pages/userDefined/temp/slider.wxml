@@ -1,0 +1,7 @@
+<view class="swiper" style="height:{{item.data.height1}}px">
+    <swiper circular autoplay="true" class="swiper" duration="1200" indicatorDots="true" interval="3000" style="height:{{item.data.height1}}px">
+        <swiper-item wx:for="{{item.data.list}}" wx:for-item="list">
+            <image bindtap="openWindow" class="swiper" data-imgindex="{{index}}" data-index="{{tempIndex}}" data-url="{{list.url}}" mode="scaleToFill" src="{{list.src}}" style="height:{{item.data.height1}}px"></image>
+        </swiper-item>
+    </swiper>
+</view>

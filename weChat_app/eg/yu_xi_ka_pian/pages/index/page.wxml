@@ -1,0 +1,67 @@
+<block wx:if="{{name}}">
+    <include src="/pages/userDefined/userDefined0/userDefined0.wxml" wx:if="{{name==='userDefined'}}"></include>
+    <include src="/pages/commonPage/activity/list.wxml" wx:elif="{{name==='list'}}"></include>
+    <include src="/pages/commonPage/common/news/newMovement.wxml" wx:elif="{{name==='newMovement'}}"></include>
+    <include src="/pages/commonPage/common/about/about.wxml" wx:elif="{{name==='about'}}"></include>
+    <include src="/pages/commonPage/common/my/my.wxml" wx:elif="{{name==='my'}}"></include>
+    <include src="/pages/commonPage/shequn/shequnList.wxml" wx:elif="{{name==='shequn'}}"></include>
+    <include src="/pages/commonPage/zhuanlan/index.wxml" wx:elif="{{name==='zhuanlan'}}"></include>
+    <block wx:elif="{{name==='zllist'}}">
+        <view class="plr30 box_b mtb20" wx:if="{{config.learn.issearch==1}}">
+            <view class="bgfff flex_start">
+                <view bindtap="learnEvent" class="ptb20 flex1 flex_between flex_items pos bgfff txt_center" data-types="colSearchBtn">
+                    <image class="seaIcon" src="https://www.haojian.cn/wximg/search.png"></image>
+                    <view class="f26 cc flex1">搜索</view>
+                </view>
+            </view>
+        </view>
+        <include src="/pages/commonPage/zhuanlan/zhuanlanList.wxml"></include>
+        <block wx:if="{{requestStatus}}">
+            <view class="null" wx:if="{{info.zhuanlanList.length==0}}">没有订阅</view>
+            <view class="noNore pos" wx:if="{{!info.hasNext&&info.zhuanlanList.length!=0}}">
+                <view class="noNore1"></view>
+                <view class="noNore2 f32 c9 txt_center">没有更多数据了</view>
+            </view>
+            <include src="/pages/commonPage/copyright.wxml" wx:if="{{info.zhuanlanList.length==0}}"></include>
+        </block>
+    </block>
+    <block wx:elif="{{name==='dplist'}}">
+        <view class="plr30 box_b mtb20" wx:if="{{config.learn.issearch==1}}">
+            <view class="bgfff flex_start">
+                <view bindtap="learnEvent" class="ptb20 flex1 flex_between flex_items pos bgfff txt_center" data-types="digSearchBtn">
+                    <image class="seaIcon" src="https://www.haojian.cn/wximg/search.png"></image>
+                    <view class="f26 cc flex1">搜索</view>
+                </view>
+            </view>
+        </view>
+        <include src="/pages/commonPage/zhuanlan/danpinList.wxml"></include>
+        <block wx:if="{{requestStatus}}">
+            <view class="null" wx:if="{{danpinList.length==0}}">没有订阅</view>
+            <view class="noNore pos" wx:if="{{!hasNext&&danpinList.length!=0}}">
+                <view class="noNore1"></view>
+                <view class="noNore2 f32 c9 txt_center">没有更多数据了</view>
+            </view>
+            <view wx:if="{{danpinList.length==0}}">
+                <include src="/pages/commonPage/copyright.wxml"></include>
+            </view>
+        </block>
+    </block>
+    <include src="/pages/commonPage/album/albumList.wxml" wx:elif="{{name==='album'}}"></include>
+    <include src="/pages/commonPage/mall/shopList.wxml" wx:elif="{{name==='shopList'}}"></include>
+    <include src="/pages/commonPage/mall/shopCart.wxml" wx:elif="{{name==='shopCart'}}"></include>
+    <include src="/pages/commonPage/sameCity/index.wxml" wx:elif="{{name==='sameCity'}}"></include>
+    <include src="/pages/commonPage/sameCity/classify.wxml" wx:elif="{{name==='sameCityPub'}}"></include>
+    <include src="/pages/commonPage/dianCan/index.wxml" wx:elif="{{name==='dianCan'}}"></include>
+    <include src="/pages/commonPage/commandHb/publishHb.wxml" wx:elif="{{name==='klhb'}}"></include>
+    <include src="/pages/commonPage/commandHb/hbArea.wxml" wx:elif="{{name==='hbArea'}}"></include>
+    <include src="/pages/commonPage/form/form.wxml" wx:elif="{{name==='from'}}"></include>
+    <include src="/pages/commonPage/appointment/appointment.wxml" wx:elif="{{name==='easyYuyue'}}"></include>
+    <include src="/pages/commonPage/yuexpert/index.wxml" wx:elif="{{name==='service'}}"></include>
+    <include src="/pages/commonPage/settleIn/index.wxml" wx:elif="{{name==='settle'}}"></include>
+    <include src="/pages/commonPage/house/index.wxml" wx:elif="{{name==='house'}}"></include>
+    <include src="/pages/commonPage/car/index.wxml" wx:elif="{{name==='car'}}"></include>
+    <include src="/pages/commonPage/bargain/index.wxml" wx:elif="{{name==='bargain'}}"></include>
+    <include src="/pages/commonPage/common/store/index.wxml" wx:elif="{{name==='store'}}"></include>
+    <include src="/pages/commonPage/hotel/index.wxml" wx:elif="{{name==='hotel'}}"></include>
+</block>
+<include src="/pages/commonPage/guanggao.wxml"></include>

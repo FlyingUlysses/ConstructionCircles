@@ -1,0 +1,17 @@
+<form bindsubmit="formSubmit" reportSubmit="true">
+    <view class="form_box" style="padding: 70rpx 60rpx;background:{{item.data.bgcolor}}">
+        <view class="input_box" style="border:1rpx solid #cccccc; border-radius:5px">
+            <input class="form_input u_form_input" name="name" placeholder="姓名" type="text" value="{{myInfo.displayname}}"></input>
+        </view>
+        <view class="input_box" style="border:1rpx solid #cccccc; border-radius:5px">
+            <input class="form_input u_form_input" name="phone" placeholder="电话" type="number" value="{{myInfo.phone}}"></input>
+        </view>
+        <view class="input_box" style="border:1rpx solid #cccccc; border-radius:5px" wx:if="{{item.data.open1==1}}">
+            <input class="form_input u_form_input" name="custom1" placeholder="{{item.data.name1}}" type="text"></input>
+        </view>
+        <view class="input_box" style="border:1rpx solid #cccccc; border-radius:5px" wx:if="{{item.data.open2==1}}">
+            <input class="form_input u_form_input" name="custom2" placeholder="{{item.data.name2}}" type="text"></input>
+        </view>
+        <button class="form-submit cf" formType="submit" style="background:{{item.data.butbgcolor}}">{{item.data.butname}}</button>
+    </view>
+</form>

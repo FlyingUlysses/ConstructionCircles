@@ -1,0 +1,9 @@
+<block wx:if="{{requestStatus}}">
+    <view class="bgfff" wx:if="{{list.length>0}}">
+        <view wx:for="{{list}}">
+            <include src="shequnList1.wxml"></include>
+        </view>
+    </view>
+    <view class="null" wx:if="{{list.length==0}}">没有数据</view>
+    <include src="/pages/commonPage/copyright.wxml" wx:if="{{list.length==0}}"></include>
+</block>

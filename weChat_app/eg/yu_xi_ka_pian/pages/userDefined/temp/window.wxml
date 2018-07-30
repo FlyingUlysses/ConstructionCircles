@@ -1,0 +1,8 @@
+<block wx:if="{{item.data.display==='show'}}">
+    <view style="height:{{item.data.height1}}px" wx:for="{{item.data.list}}" wx:for-item="list">
+        <button class="contactBtn" openType="contact" style="height:{{item.data.height1}}px;line-height:{{item.data.height1}}px" wx:if="{{list.url==='contact'}}">
+            <image class="chuchuang_1" data-imgindex="{{index}}" data-index="{{tempIndex}}" src="{{list.src}}" style="height:{{item.data.height1}}px"></image>
+        </button>
+        <image bindtap="openWindow" class="chuchuang_1" data-imgindex="{{index}}" data-index="{{tempIndex}}" data-url="{{list.url}}" src="{{list.src}}" style="height:{{item.data.height1}}px" wx:else></image>
+    </view>
+</block>

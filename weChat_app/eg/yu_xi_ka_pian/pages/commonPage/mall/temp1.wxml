@@ -1,0 +1,41 @@
+<navigator hoverClass="none" url="/pages/mall/pages/shopDetail/shopDetail?isMallODOpen=0&productId={{item.id}}">
+    <view class="bgfff pos p30 box_b">
+        <view class="flex_start">
+            <image class="shopList1_img flex_shrink" mode="scaleToFill" src="{{item.img.thumb_small_url}}"></image>
+            <view class="flex1 pl30 box_b flex_between flex_column">
+                <view class="c3 f28 clamp3">{{item.title}}</view>
+                <view>
+                    <view class="flex_between">
+                        <text class="f24 cc" wx:if="{{config.shop.saleDisplay==1}}">销量：{{item.sale_count}}</text>
+                        <view class="msBiaoShi f20 cf txt_center" wx:if="{{item.seckilling}}">秒杀</view>
+                        <view class="msBiaoShi f20 cf txt_center" wx:if="{{item.groupon}}">拼团</view>
+                    </view>
+                    <view class="flex_between flex_items mt10">
+                        <view class="flex_items flex_start">
+                            <block wx:if="{{item.seckilling}}">
+                                <view class="f30 cff5">¥ {{item.seckilling.price_desc}}</view>
+                                <view class="ml10 thr_line f24 cc">¥ {{item.price_desc}}</view>
+                            </block>
+                            <block wx:elif="{{item.groupon}}">
+                                <view class="f30 cff5">¥ {{item.groupon.price_desc}}</view>
+                                <view class="ml10 thr_line f24 cc">¥ {{item.price_desc}}</view>
+                            </block>
+                            <block wx:else>
+                                <view class="f30 cff5">¥ {{item.price_desc}}</view>
+                                <view class="ml10 thr_line f24 cc" wx:if="{{item.origin_price_desc}}">¥ {{item.origin_price_desc}}</view>
+                                <view class="card_price_box ml20" wx:if="{{item.isMemberProduct&&item.member.isMember}}">
+                                    <view class="price_lf flex_start flex_items">
+                                        <image class="img_1" src="https://www.haojian.cn/wximg/market/card_price.png"></image>
+                                        <image class="img_2" src="https://www.haojian.cn/wximg/market/card_price_icon.png"></image>
+                                        <view class="f20 cf">会员价</view>
+                                    </view>
+                                    <view class="card_price">￥{{item.fee_member_desc}}</view>
+                                </view>
+                            </block>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</navigator>

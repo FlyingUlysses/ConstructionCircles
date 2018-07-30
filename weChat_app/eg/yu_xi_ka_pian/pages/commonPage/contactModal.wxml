@@ -1,0 +1,33 @@
+<view bindtap="closeKF" class="tankuang {{tankuang[0]}}" data-index="0"></view>
+<view class="alter2 {{tankuang[0]}}">
+    <view class="alterTitle">
+        <view bindtap="closeKF" class="alter2Close" data-index="0">
+            <image src="https://www.haojian.cn/wximg/close.png"></image>
+        </view>
+        <view class="txt_center c3 f34 bbe9s">联系方式</view>
+    </view>
+    <view class="f20 txt_center cc mtb30" wx:if="{{detail.customer_service.wx_qrcode.original_url}}">点击查看大图，识别二维码，添加客服微信号</view>
+    <view class="ewcode_box" wx:if="{{detail.customer_service.wx_qrcode.original_url}}">
+        <image catchtap="seeBigImg" class="tankuang1_4" data-imgurl="{{detail.customer_service.wx_qrcode.original_url}}" mode="scaleToFill" src="{{detail.customer_service.wx_qrcode.original_url}}"></image>
+    </view>
+    <view bindtap="call" class="contact_btn_box" data-phone="{{detail.customer_service.tel}}" style="background:#{{peise.mcolor}}" wx:if="{{detail.customer_service.tel}}">
+        <view class="contact_btn_info">
+            <view class="contact_btn_left">
+                <image class="phoneIcon_img" src="https://www.haojian.cn/wximg/phoneIcon.png"></image>
+                <view class="f26 cf mlr10">拨打电话：</view>
+                <view class="f26 cf">{{detail.customer_service.tel}}</view>
+            </view>
+            <image class="contact_btn_right" src="https://www.haojian.cn/wximg/right_icon1.png"></image>
+        </view>
+    </view>
+    <view class="contact_btn_box mb30" style="background:#{{peise.mcolor}}">
+        <button class="contact_btn" openType="contact"></button>
+        <view class="contact_btn_info">
+            <view class="contact_btn_left">
+                <image class="wxIcon_img" src="https://www.haojian.cn/wximg/wxIcon.png"></image>
+                <view class="f26 cf mlr10">微信对话</view>
+            </view>
+            <image class="contact_btn_right" src="https://www.haojian.cn/wximg/right_icon1.png"></image>
+        </view>
+    </view>
+</view>

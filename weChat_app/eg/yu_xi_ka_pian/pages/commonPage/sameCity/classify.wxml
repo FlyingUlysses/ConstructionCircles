@@ -1,0 +1,18 @@
+<include src="/pages/commonPage/common.wxml"></include>
+<block wx:if="{{requestStatus}}">
+    <view class="flex_warp bgfff bte9s pb20" wx:if="{{list.length>0}}">
+        <view class="smct_cls_item txt_center" wx:for="{{list}}">
+            <view bindtap="sameCityEvent" data-index="{{index}}" data-types="openPub">
+                <image class="smct_cls_img" src="{{item.icon.thumb_small_url}}"></image>
+                <view class="f24 c3 smct_cls_txt txt_center">{{item.name}}</view>
+            </view>
+        </view>
+    </view>
+    <view class="p30 box_b flex_start" wx:if="{{config.catalog.statement==1}}">
+        <view class="c9 f24">发布和阅读须知</view>
+        <view class="cff8 f24">
+            <navigator hoverClass="none" url="/pages/common/pages/hongbaoGonglue/hongbaoGonglue?types=catalog">《免责说明》</navigator>
+        </view>
+    </view>
+    <view class="null" wx:if="{{list.length==0}}">没有数据</view>
+</block>

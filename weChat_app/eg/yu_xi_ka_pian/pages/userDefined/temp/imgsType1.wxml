@@ -1,0 +1,5 @@
+<view class="imgs_1_img" style="height:{{item.data.height1}}px">
+    <image data-imgindex="{{index}}" data-index="{{tempIndex}}" src="{{list.src}}" style="height:{{item.data.height1}}px"></image>
+    <view class="imgs_1_title" style="font-size:{{item.data.msize}};color:{{item.data.mcolor}};text-align:{{item.data.malign}};font-weight: {{item.data.mweight}}" wx:if="{{item.data.mtitle==1}}">{{list.mname}}</view>
+</view>
+<view class="imgs_1_title" style="font-size:{{item.data.asize}};color:{{item.data.acolor}};text-align:{{item.data.aalign}};font-weight: {{item.data.aweight}}" wx:if="{{item.data.atitle==1}}">{{list.aname}}</view>

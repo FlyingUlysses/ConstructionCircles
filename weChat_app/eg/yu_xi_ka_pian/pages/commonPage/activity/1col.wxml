@@ -1,0 +1,41 @@
+<navigator hoverClass="none" url="/pages/activity/pages/activityDetail/activityDetail?isODOpen=0&id={{item.id}}">
+    <view class="p30 box_b flex_start bgfff">
+        <view class="listImg_col1 pos flex_shrink">
+            <view class="list_kl_hb hb_small_btn" wx:if="{{!item.hongbao1&&item.hongbao_pool}}">福利</view>
+            <image class="listImg_col1" mode="scaleToFill" src="{{item.cover.thumb_small_url}}"></image>
+            <view class="list_hb" wx:if="{{item.hongbao1.desc.length>0}}">
+                <view class="pos">
+                    <image class="list3_hb" src="https://www.haojian.cn/wximg/ad5.png"></image>
+                    <view class="list_hb1 f14 cf txt_center">{{item.hongbao1.desc}}</view>
+                </view>
+            </view>
+        </view>
+        <view class="flex1 ml20 flex_column flex_between">
+            <view class="clamp1 f28 c3" wx:if="{{!item.clamp2}}">{{item.subject}}</view>
+            <view class="clamp2 f28 c3" wx:if="{{item.clamp2}}">{{item.subject}}</view>
+            <view>
+                <view class="mt30 f32 cff5 flex_start flex_items">
+                    <text>{{item.fee_desc}}</text>
+                    <view class="card_price_box ml20" wx:if="{{item.isMemberActivity&&item.member.isMember}}">
+                        <view class="price_lf flex_start flex_items">
+                            <image class="img_1" src="https://www.haojian.cn/wximg/market/card_price.png"></image>
+                            <image class="img_2" src="https://www.haojian.cn/wximg/market/card_price_icon.png"></image>
+                            <view class="f20 cf">会员价</view>
+                        </view>
+                        <view class="card_price">￥{{item.fee_member_desc}}</view>
+                    </view>
+                </view>
+                <view class="f20 mt20">
+                    <view class="pos mt10 flex_items flex_start" wx:if="{{item.config.showTime}}">
+                        <image class="time_icon" src="https://www.haojian.cn/wximg/time_icon.png"></image>
+                        <view class="ml10">{{item.start_time_l}}</view>
+                    </view>
+                    <view class="pos mt10 flex_items flex_start" wx:if="{{item.location.desc}}">
+                        <image class="add_icon flex_shrink" src="https://www.haojian.cn/wximg/address_icon.png"></image>
+                        <view class="clamp1 ml10">{{item.location.desc}}</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</navigator>

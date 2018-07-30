@@ -1,0 +1,10 @@
+<block wx:if="{{requestStatus}}">
+    <view class="form_page_box" wx:if="{{list.length>0}}">
+        <navigator class="form_item_box mt20 bgfff" hoverClass="none" url="/pages/form/pages/formDetail/formDetail?formid={{item.id}}" wx:for="{{list}}">
+            <view class="form_title clamp2">{{item.title}}</view>
+            <image class="form_img" mode="scaleToFill" src="{{item.img.thumb_medium_url}}"></image>
+            <view class="form_ys_time">有效期：{{item.start_time}}-{{item.end_time}}</view>
+        </navigator>
+    </view>
+    <view class="null" wx:if="{{list.length==0}}">没有数据</view>
+</block>

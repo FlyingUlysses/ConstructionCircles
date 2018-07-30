@@ -1,0 +1,58 @@
+<include src="/pages/commonPage/common.wxml"></include>
+<view class="about bte9s">
+    <view class="about_1 txt_center bgfff">
+        <image class="about_1_1 radius" src="{{info.about.logo.thumb_medium_url}}" wx:if="{{info.about.logo.thumb_medium_url}}"></image>
+    </view>
+    <view class="bgfff">
+        <view class="f34 txt_center c3">{{info.about.name}}</view>
+        <view class="about_2_2 txt_center mt25 f24 c9">{{info.about.desc}}</view>
+    </view>
+    <view class="mt20 bgfff">
+        <view bindtap="aboutEvent" class="about_3_1 f26" data-types="kefu" wx:if="{{info.about.customer_service.wx}}">
+            <view class="mr30 c3">微信客服</view>
+            <view class="about_3_1_2 c9 f26 mr20">{{info.about.customer_service.wx}}</view>
+            <image class="rightIcon" src="https://www.haojian.cn/wximg/right_icon.png"></image>
+        </view>
+        <view bindtap="aboutEvent" class="about_3_1 f26" data-phone="{{info.about.tel}}" data-types="call" wx:if="{{info.about.tel}}">
+            <view class="mr30 c3">联系电话</view>
+            <view class="about_3_1_2 c9 f26 mr20">{{info.about.tel}}</view>
+            <image class="rightIcon" src="https://www.haojian.cn/wximg/right_icon.png"></image>
+        </view>
+        <view class="about_3_1 f26" wx:if="{{info.about.company}}">
+            <view class="mr30 c3">公司名称</view>
+            <view class="about_3_1_2 c9 f26 mr20">{{info.about.company}}</view>
+        </view>
+        <view bindtap="aboutEvent" class="about_3_1 f26" data-lat="{{info.about.location.lat}}" data-lng="{{info.about.location.lng}}" data-types="location" wx:if="{{info.about.location.desc}}">
+            <view class="mr30 c3">公司地址</view>
+            <view class="about_3_1_2 c9 f26 mr20">{{info.about.location.desc}}</view>
+            <image class="rightIcon" src="https://www.haojian.cn/wximg/right_icon.png"></image>
+        </view>
+        <view class="about_3_1 about_3_0 f26" wx:if="{{info.about.lisence.thumb_small_url}}">
+            <view class="mr30 c3">营业执照</view>
+            <image bindtap="aboutEvent" class="about_3_1_4" data-imgurl="{{info.about.lisence.original_url}}" data-types="seeyyzz" mode="scaleToFill" src="{{info.about.lisence.thumb_small_url}}"></image>
+        </view>
+        <view wx:if="{{info.about.photos.length>0}}">
+            <view class="f26 c3 p20">公司相册</view>
+            <view class="flex_warp plr20 box_b">
+                <view class="xiangce_1 mb15" wx:for="{{info.about.photos}}">
+                    <view bindtap="aboutEvent" class="xiangce_1_1" data-index="{{index}}" data-types="photos">
+                        <image mode="scaleToFill" src="{{item.thumb_small_url}}"></image>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+<include src="/pages/commonPage/copyright.wxml"></include>
+<view bindtap="aboutEvent" class="tankuang {{tankuang}}" data-types="close"></view>
+<view class="alter2 {{tankuang}}">
+    <view class="alterTitle">
+        <view bindtap="aboutEvent" class="alter2Close" data-types="close">
+            <image src="https://www.haojian.cn/wximg/close.png"></image>
+        </view>
+        <view class="txt_center f34 c3 bbe9s">联系客服</view>
+    </view>
+    <view class="mt30 f22 c3 txt_center">扫描二维码，添加客服微信号</view>
+    <view class="mt20 f24 c6 txt_center">微信号：{{info.about.customer_service.wx}}</view>
+    <image bindtap="aboutEvent" class="tankuang1_4" data-imgurl="{{info.about.qrcode.original_url}}" data-types="wxkf" src="{{info.about.qrcode.thumb_small_url}}"></image>
+</view>

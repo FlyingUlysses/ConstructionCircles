@@ -1,0 +1,49 @@
+{
+    "pages": [
+        "pages/index/page0/page0",
+        "pages/index/page1/page1",
+        "pages/index/page2/page2",
+        "pages/index/page3/page3",
+        "pages/index/page4/page4",
+        "pages/webview/webview",
+        "pages/userDefined/userDefined0/userDefined0",
+        "pages/comment/comment",
+        "pages/comment/commentList/commentList",
+        "pages/comment/commentShop/commentShop"   
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#ffffff",
+        "navigationBarTextStyle": "black",
+        "navigationBarTitleText": "玉溪卡片"
+    },
+    "tabBar": {
+        "color": "#333333",
+        "selectedColor": "#ff8542",
+        "list": [
+            {
+                "pagePath": "pages/index/page0/page0",
+                "text": "无聊",
+                "iconPath": "images/tabbar_icon/tabbar_play.png",
+                "selectedIconPath": "images/tabbar_icon/tabbar_play_1_selected.png"
+            },
+            {
+                "pagePath": "pages/index/page1/page1",
+                "text": "卡片",
+                "iconPath": "images/tabbar_icon/tabbar_card.png",
+                "selectedIconPath": "images/tabbar_icon/tabbar_card_1_selected.png"
+            },
+            {
+                "pagePath": "pages/index/page2/page2",
+                "text": "我们",
+                "iconPath": "images/tabbar_icon/tabbar_list.png",
+                "selectedIconPath": "images/tabbar_icon/tabbar_list_1_selected.png"
+            }
+        ]
+    },
+    "networkTimeout": {
+        "request": 60000,
+        "downloadFile": 60000
+    },
+    "debug": true
+}

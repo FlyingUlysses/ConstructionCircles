@@ -1,0 +1,14 @@
+<view class="bgfff bte9s" wx:if="{{item.data.list!=''}}">
+    <view class="bbe9s plr20" wx:for="{{item.data.list}}">
+        <button class="contactBtn bgfff txt_left" openType="contact" wx:if="{{item.url==='contact'}}">
+            <view class="sd1_1_1">
+                <view class="sd1_1_1_2 f32 c3">{{item.name}}</view>
+                <image class="rightIcon" src="https://www.haojian.cn/wximg/right_icon.png"></image>
+            </view>
+        </button>
+        <view bindtap="openWindow" class="sd1_1_1" data-url="{{item.url}}" wx:else>
+            <view class="sd1_1_1_2 f32 c3">{{item.name}}</view>
+            <image class="rightIcon" src="https://www.haojian.cn/wximg/right_icon.png"></image>
+        </view>
+    </view>
+</view>

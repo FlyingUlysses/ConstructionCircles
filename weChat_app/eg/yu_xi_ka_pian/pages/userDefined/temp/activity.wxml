@@ -1,0 +1,17 @@
+<block wx:if="{{item.data.list}}">
+    <block wx:if="{{item.data.style=='big'}}">
+        <view class="mb20" wx:for="{{item.data.list}}">
+            <include src="/pages/commonPage/activity/1col_large.wxml"></include>
+        </view>
+    </block>
+    <view class="flex_warp plr10" wx:if="{{item.data.style=='small'}}">
+        <view class="list3_1_1 mb20" wx:for="{{item.data.list}}">
+            <include src="/pages/commonPage/activity/2col.wxml"></include>
+        </view>
+    </view>
+    <block wx:if="{{item.data.style=='list'}}">
+        <view class="mb20" wx:for="{{item.data.list}}">
+            <include src="/pages/commonPage/activity/1col.wxml"></include>
+        </view>
+    </block>
+</block>

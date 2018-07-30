@@ -1,0 +1,66 @@
+<view class="Hotel {{Hoteldisplay}}">
+    <view class="Hoteltitle">
+        <view class="L">
+            <text class="f32">选择日期</text>
+        </view>
+        <text bindtap="hotelEvent" class="close" data-types="detailClose">×</text>
+    </view>
+    <view class="Prompt f30 txt_center">入住退房时间为所选城市时间</view>
+    <view class="hotelweek">
+        <view class="week" wx:for="{{hotelweeks}}">{{item}}</view>
+    </view>
+    <view class="month">
+        <view class="monone">
+            <view class="ymd">{{ymd}}</view>
+            <view class="mg" style="width:1px;height:1px;float:left;margin-left:{{left}}"></view>
+            <view bindtap="hotelEvent" class="monthday {{item.state==1?'active-tag':''}}" data-co="{{index}}" data-days="{{ymd}}" data-types="choseday" wx:for="{{months}}" wx:key="choseday">
+                <view style="background:#ccc" wx:if="{{index<monidx}}">
+                    <text class="mt20" style="display:inline-block">{{item.day}}</text>
+                </view>
+                <view wx:elif="{{item.nv!=''}}">
+                    <text style="display:inline-block;width:100%">{{item.day}}</text>
+                    <text>{{item.nv}}</text>
+                </view>
+                <view class="active-tag2" wx:elif="{{item.state==2}}">
+                    <text class="mt20" style="display:inline-block">{{item.day}}</text>
+                </view>
+                <view wx:else>
+                    <text class="mt20" style="display:inline-block;width:100%">{{item.day}}</text>
+                </view>
+            </view>
+        </view>
+        <view class="monone">
+            <view class="ymd">{{ymd2}}</view>
+            <view class="mg" style="width:1px;height:1px;float:left;margin-left:{{left2}}"></view>
+            <view bindtap="hotelEvent" class="monthday {{item.state==1?'active-tag':''}}" data-co="{{index}}" data-days="{{ymd2}}" data-types="choseday2" wx:for="{{monthnext}}">
+                <view class="active-tag2" wx:if="{{item.state==2}}">
+                    <text class="mt20" style="display:inline-block">{{item.day}}</text>
+                </view>
+                <view wx:elif="{{item.nv!=''}}">
+                    <text style="display:inline-block;width:100%">{{item.day}}</text>
+                    <text>{{item.nv}}</text>
+                </view>
+                <view wx:else>
+                    <text style="display:inline-block;width:100%">{{item.day}}</text>
+                </view>
+            </view>
+        </view>
+        <view class="monone">
+            <view class="ymd">{{ymd3}}</view>
+            <view class="mg" style="width:1px;height:1px;float:left;margin-left:{{left3}}"></view>
+            <view bindtap="hotelEvent" class="monthday {{item.state==1?'active-tag':''}}" data-co="{{index}}" data-days="{{ymd3}}" data-types="choseday3" wx:for="{{monthlast}}">
+                <view class="active-tag2" wx:if="{{item.state==2}}">
+                    <text class="mt20" style="display:inline-block">{{item.day}}</text>
+                </view>
+                <view wx:elif="{{item.nv!=''}}">
+                    <text style="display:inline-block;width:100%">{{item.day}}</text>
+                    <text>{{item.nv}}</text>
+                </view>
+                <view wx:else>
+                    <text style="display:inline-block;width:100%">{{item.day}}</text>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+<view bindtap="hotelEvent" class="tankuang {{service_class}}" data-types="detailClose"></view>

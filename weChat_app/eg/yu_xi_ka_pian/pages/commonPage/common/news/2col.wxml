@@ -1,0 +1,13 @@
+<view class="col2 mb20">
+    <navigator hoverClass="none" url="/pages/newMovement/pages/newsDetail/newsDetail?newsId={{item.id}}&index={{index}}">
+        <view class="col2_1 bgfff">
+            <view class="col2_1_1">
+                <view class="pos">
+                    <view class="list_hb_btn img_lf" wx:if="{{item.hongbao_pool}}">福利</view>
+                    <image class="col2_1_1_img" mode="scaleToFill" src="{{item.attachments[0].thumb_medium_url}}"></image>
+                </view>
+                <view class="f28 c3 mt10 mb15 clamp2">{{item.title}}</view>
+            </view>
+        </view>
+    </navigator>
+</view>

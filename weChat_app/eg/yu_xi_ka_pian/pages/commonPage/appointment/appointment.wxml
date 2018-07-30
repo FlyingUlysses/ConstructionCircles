@@ -1,0 +1,19 @@
+<include src="/pages/commonPage/banner.wxml"></include>
+<view class="flex_start plr30 ptb10 box_b bgfff f24 flex_items pos overHidden" wx:if="{{gonggao.title}}">
+    <view class="voice_icon1 bgfff pl30">
+        <image class="flex_shrink voice_icon" src="https://www.haojian.cn/wximg/appointment/voice.png"></image>
+    </view>
+    <view class="yy_GongGao cff5">
+        <view class="yy_marquee">
+            <view animation="{{gonggao.animation}}" class="yy_marquee_text">{{gonggao.title}}</view>
+        </view>
+    </view>
+</view>
+<view class="plr15 box_b bgfff">
+    <view class="mt30 flex_warp">
+        <view bindtap="yuyueEvent" class="w33 plr15 ptb30 box_b" data-index="{{index}}" data-types="detail" wx:for="{{list}}">
+            <image class="h120" mode="scaleToFill" src="{{item.photo}}"></image>
+            <view class="txt_center c3 mt10 f24">{{item.name}}</view>
+        </view>
+    </view>
+</view>

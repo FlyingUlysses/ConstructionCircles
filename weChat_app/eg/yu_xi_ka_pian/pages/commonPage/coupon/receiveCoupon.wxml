@@ -1,0 +1,54 @@
+<view bindtap="closeCouponMadel" class="tankuang" wx:if="{{showCoupon}}"></view>
+<view class="alter1" wx:if="{{showCoupon}}">
+    <view class="alterTitle">
+        <view bindtap="closeCouponMadel" class="alterClose">
+            <image src="https://www.haojian.cn/wximg/close1.png"></image>
+        </view>
+        <view class="f34 txt_center c3">领取优惠券</view>
+    </view>
+    <view class="p30 bgf2f3f4 receiveCoupon">
+        <block wx:for="{{couponData}}">
+            <view catchtap="getCoupon" class="myCoupon1 mb30 box_b" data-id="{{item.type_id}}" data-index="{{index}}" wx:if="{{item.status==='available'}}">
+                <image class="myCoupon1Bg" src="https://www.haojian.cn/wximg/coupon1.png"></image>
+                <view class="myCoupon1_con">
+                    <view class="f60 cf mt30">{{item.value_desc}}</view>
+                    <view class="f22 cf text_overflow">{{item.applicable_desc}}</view>
+                    <view class="f22 mt10 myCoupon1_time text_overflow">{{item.valid_date_desc}}</view>
+                </view>
+                <view class="receiveCoupon2">
+                    <view class="txt_center receiveCoupon2_1">点击</view>
+                    <view class="receiveCoupon2_2 txt_center">领取</view>
+                </view>
+            </view>
+            <view class="myCoupon1 mb30 box_b" data-id="{{item.type_id}}" data-index="{{index}}" wx:else>
+                <image class="myCoupon1Bg" src="https://www.haojian.cn/wximg/coupon1.png" style="opacity:0.5"></image>
+                <view class="myCoupon1_con">
+                    <view class="f60 cf mt30">{{item.value_desc}}</view>
+                    <view class="f22 cf text_overflow">{{item.applicable_desc}}</view>
+                    <view class="f22 mt10 myCoupon1_time text_overflow">{{item.valid_date_desc}}</view>
+                </view>
+                <view class="receiveCoupon2">
+                    <view class="txt_center f36 cffa" wx:if="{{item.status==='taken'}}">已领取</view>
+                    <view class="txt_center f36 cffa" wx:elif="{{item.status==='unavailable'}}">不可领取</view>
+                </view>
+            </view>
+        </block>
+    </view>
+</view>
+<view bindtap="closeFavorableMadel" class="tankuang" wx:if="{{showFavorable}}"></view>
+<view class="alter1" wx:if="{{showFavorable}}">
+    <view catchtap="closeFavorableMadel" class="alterTitle bbe9s">
+        <view class="alterClose">
+            <image src="https://www.haojian.cn/wximg/close1.png"></image>
+        </view>
+        <view class="f34 txt_center c3">满减</view>
+    </view>
+    <view class="p30 receiveCoupon bgfff">
+        <view class="flex_between mt15" wx:for="{{promotions}}">
+            <view class="flex_start">
+                <view class="favorable_type">满减</view>
+                <view class="favorable_text">{{item.name}}</view>
+            </view>
+        </view>
+    </view>
+</view>

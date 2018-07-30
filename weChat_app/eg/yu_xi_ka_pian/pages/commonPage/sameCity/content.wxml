@@ -1,0 +1,88 @@
+<view class="sameCity_row" wx:if="{{list.length>0}}">
+    <block wx:if="{{config.catalog.isTitle==1}}">
+        <view class="bgfff" wx:for="{{list}}" wx:for-index="listIndex">
+            <view catchtap="sameCityEvent" class="plr30 flex_between flex_items bbe9s" data-id="{{item.id}}" data-index="{{listIndex}}" data-types="detail">
+                <view class="list_left_box flex_start flex_items">
+                    <view class="lf_ding" wx:if="{{item.is_top}}">顶</view>
+                    <view class="lf_hb {{item.is_top?'ml5':''}}" wx:if="{{item.hongbao_pool}}">福利</view>
+                    <view catchtap="sameCityEvent" class="f32 ca4a6aa mlr10 box_b flex_shrink" data-id="{{item.catalog.id}}" data-types="liexing" data-typesid="{{item.catalog.id}}" wx:if="{{item.catalog.name}}">{{item.catalog.name}}</view>
+                    <view class="text_overflow ptb30 f30 c3 {{item.is_top||item.hongbao_pool?'ml10':''}}">{{item.title}}</view>
+                </view>
+                <view class="list_right_time box_b flex_shrink">{{item.datetime}}</view>
+            </view>
+        </view>
+    </block>
+    <block wx:else>
+        <view class="bgfff mb20 pb20" wx:for="{{list}}" wx:for-index="listIndex">
+            <view class="flex_start pt30 pos">
+                <view class="smct_row_lf pl30 pos">
+                    <image catchtap="{{item.uid==item.owner.id||item.status=='normal'?'sameCityEvent':''}}" class="smct_row_lf_avatar" data-id="{{item.id}}" data-index="{{listIndex}}" data-types="detail" mode="scaleToFill" src="{{item.owner.avatar_url.thumb_small_url}}"></image>
+                    <image class="vip" src="https://www.haojian.cn/wximg/market/vip_{{item.member.grade}}.png" wx:if="{{item.member.isMember}}"></image>
+                </view>
+                <image class="smct_sticky_img" src="https://www.haojian.cn/wximg/smct_sticky.png" wx:if="{{item.status=='normal'&&item.is_top}}"></image>
+                <image class="smct_sticky_img" src="https://www.haojian.cn/wximg/shenhe.png" wx:if="{{item.status==='wait_confirm'}}"></image>
+                <view class="smct_row_rt pr30">
+                    <view catchtap="{{item.uid==item.owner.id||item.status=='normal'?'sameCityEvent':''}}" data-id="{{item.id}}" data-index="{{listIndex}}" data-types="detail">
+                        <view class="flex_start flex_items">
+                            <view class="f26 c6 text_overflow">{{item.owner.displayname}}</view>
+                            <view class="flex_start flex_items ml20" wx:if="{{item.hongbao_pool}}">
+                                <image class="hongbao" src="https://www.haojian.cn/wximg/tc/tcList5.png"></image>
+                                <view class="cfd5666 f20 ml10">福利</view>
+                            </view>
+                        </view>
+                        <view class="f20 cc">{{item.datetime}}</view>
+                    </view>
+                    <view catchtap="sameCityEvent" class="sticky_btn smct_row_rt_btn f22 cf" data-catalogid="{{item.catalog.id}}" data-id="{{item.id}}" data-index="{{listIndex}}" data-types="zhiding" wx:if="{{!item.is_top&&item.uid==item.owner.id&&item.status=='normal'}}">点击置顶</view>
+                    <view catchtap="sameCityEvent" class="contact_btn smct_row_rt_btn f22 c3" data-phone="{{item.customer_service.phone}}" data-types="call" wx:if="{{item.status=='normal'&&item.uid!=item.owner.id}}">联系Ta</view>
+                </view>
+            </view>
+            <view class="plr30 box_b">
+                <view bindtap="{{item.uid==item.owner.id||item.status=='normal'?'sameCityEvent':''}}" class="ptb30 flex_start" data-id="{{item.id}}" data-index="{{listIndex}}" data-types="detail">
+                    <view class="{{item.isMore?'clamp4':''}}">
+                        <text catchtap="sameCityEvent" class="f32 ca4a6aa mr10" data-id="{{item.catalog.id}}" data-types="liexing" data-typesid="{{item.catalog.id}}" wx:if="{{item.catalog.name}}">#{{item.catalog.name}}#</text>
+                        <text class="lh42 f32 c3">{{item.content}}</text>
+                    </view>
+                </view>
+                <view wx:if="{{item.content.length>100}}">
+                    <view catchtap="sameCityEvent" class="newMore f32 pb30" data-index="{{listIndex}}" data-types="zhankaiMore" wx:if="{{item.isMore}}">展开更多</view>
+                    <view catchtap="sameCityEvent" class="newMore f32 pb30" data-index="{{listIndex}}" data-types="yincangMore" wx:if="{{!item.isMore}}">收起</view>
+                </view>
+                <view class="flex_warp" wx:if="{{item.attachments.length>0}}">
+                    <image bindtap="sameCityEvent" class="smct_info_img" data-index="{{listIndex}}" data-types="bigImg" data-url="{{img.oss_bject}}" mode="scaleToFill" src="{{img.thumb_small_url}}" wx:for="{{item.attachments}}" wx:for-item="img"></image>
+                    <view catchtap="{{item.uid==item.owner.id||item.status=='normal'?'sameCityEvent':''}}" class="flex1" data-id="{{item.id}}" data-index="{{listIndex}}" data-types="detail"></view>
+                </view>
+                <view catchtap="sameCityEvent" class="flex_start flex_items ptb20" data-lat="{{item.location.lat}}" data-lng="{{item.location.lng}}" data-types="address" wx:if="{{item.location.desc}}">
+                    <image class="smct_address" src="https://www.haojian.cn/wximg/tc/address.png"></image>
+                    <view class="f24 c406bb2 text_overflow ml10">{{item.location.desc}}</view>
+                </view>
+                <view class="flex_around">
+                    <view catchtap="{{item.uid==item.owner.id||item.status=='normal'?'sameCityEvent':''}}" class="flex_start flex_items p20" data-id="{{item.id}}" data-index="{{listIndex}}" data-types="detail">
+                        <image class="view_img" src="https://www.haojian.cn/wximg/tc/tcList1.png"></image>
+                        <view class="ml10 f22 c9">{{item.view_count}}</view>
+                    </view>
+                    <view catchtap="{{item.uid==item.owner.id||item.status=='normal'?'sameCityEvent':''}}" class="flex_start flex_items p20" data-id="{{item.id}}" data-index="{{listIndex}}" data-types="detail">
+                        <image class="comment_img" src="https://www.haojian.cn/wximg/tc/tcList2.png"></image>
+                        <view class="ml10 f22 c9">{{item.comment_count}}</view>
+                    </view>
+                    <view bindtap="sameCityEvent" class="flex_start flex_items p20" data-index="{{listIndex}}" data-pubid="{{item.id}}" data-status="0" data-types="dianzan" wx:if="{{item.is_like}}">
+                        <image class="like_img" src="https://www.haojian.cn/wximg/tc/tcList31.png"></image>
+                        <view class="ml10 f22 c9">{{item.like_count}}</view>
+                    </view>
+                    <view bindtap="sameCityEvent" class="flex_start flex_items p20" data-index="{{listIndex}}" data-pubid="{{item.id}}" data-status="1" data-types="dianzan" wx:else>
+                        <image class="like_img" src="https://www.haojian.cn/wximg/tc/tcList3.png"></image>
+                        <view class="ml10 f22 c9">{{item.like_count}}</view>
+                    </view>
+                    <view catchtap="sameCityEvent" class="flex_start flex_items f22 c9 pos p20" data-index="{{listIndex}}" data-types="share">
+                        <image class="share_img" src="https://www.haojian.cn/wximg/tc/tcList4.png"></image>分享<view class="shareBtn" wx:if="{{item.status==='normal'}}">
+                            <button class="be9s" data-index="{{listIndex}}" hoverClass="none" openType="share"></button>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </block>
+</view>
+<view class="noNore pos" wx:if="{{!hasNext&&list.length!=0}}">
+    <view class="noNore1"></view>
+    <view class="noNore2 f32 c9 txt_center">没有更多数据了</view>
+</view>

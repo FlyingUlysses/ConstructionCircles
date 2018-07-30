@@ -1,0 +1,44 @@
+<include src="/pages/commonPage/banner.wxml"></include>
+<include src="/pages/commonPage/common.wxml"></include>
+<view class="plr30 box_b mtb20" wx:if="{{config.learn.issearch==1}}">
+    <view class="bgfff flex_start">
+        <picker bindchange="learnEvent" data-types="pickerChange" range="{{learnSearchMenu}}" rangeKey="{{item}}" value="{{index}}">
+            <view class="h_search11 flex_around flex_items">
+                <view class="f24 c6">{{learndefaultval}}</view>
+                <image class="h_search11_down" src="https://www.haojian.cn/wximg/house/down.png"></image>
+            </view>
+        </picker>
+        <view bindtap="learnEvent" class="flex1 flex_between flex_items pos bgfff txt_center" data-types="searchBtn">
+            <image class="seaIcon" src="https://www.haojian.cn/wximg/search.png"></image>
+            <view class="f26 cc flex1">搜索</view>
+        </view>
+    </view>
+</view>
+<block wx:if="{{requestStatus}}">
+    <view class="zl_index">
+        <view class="p30 box_b bgfff mt20" wx:if="{{info.zhuanlanList.length>0}}">
+            <navigator hoverClass="none" url="/pages/zhuanlan/pages/zhuanlanList/zhuanlanList">
+                <view class="flex_between pos flex_items">
+                    <text class="f32 c3">专栏</text>
+                    <view class="f28 c9 pr30">查看全部</view>
+                    <image class="rightIcon" src="https://www.haojian.cn/wximg/right_icon.png" style="right:0"></image>
+                </view>
+            </navigator>
+        </view>
+        <include src="zhuanlanList.wxml"></include>
+        <view class="p30 box_b bgfff mt20" wx:if="{{danpinList.length>0}}">
+            <navigator hoverClass="none" url="/pages/zhuanlan/pages/danpinList/danpinList">
+                <view class="flex_between pos flex_items">
+                    <view class="f32 c3">单品</view>
+                    <view class="f28 c9 pr30">查看全部</view>
+                    <image class="rightIcon" src="https://www.haojian.cn/wximg/right_icon.png" style="right:0"></image>
+                </view>
+            </navigator>
+        </view>
+        <include src="danpinList.wxml"></include>
+    </view>
+    <view catchtap="learnEvent" class="audeoPlayStatus" data-types="toAudeoDetail" wx:if="{{config.learn.openAudeoBtn==1}}">
+        <image src="https://www.haojian.cn/wximg/zhuanlan/audeoPlay.gif" wx:if="{{audeo_play_status}}"></image>
+        <image src="https://www.haojian.cn/wximg/zhuanlan/audeo_default.png" wx:else></image>
+    </view>
+</block>

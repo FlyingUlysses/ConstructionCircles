@@ -1,0 +1,29 @@
+<block wx:if="{{requestStatus}}">
+    <block wx:if="{{list.length>0}}">
+        <view class="mt20 bgfff p30 box_b" style="height:200rpx" wx:for="{{list}}">
+            <view class="flex_between">
+                <view class="flex1">
+                    <navigator class="flex_start" hoverClass="none" url="/pages/common/pages/stores/storesDetail/storesDetail?id={{item.id}}">
+                        <image class="user_info_photo flex_shrink" mode="scaleToFill" src="{{item.photo.thumb_small_url}}"></image>
+                        <view class="ml30">
+                            <view class="f32 c3 clamp1">{{item.name}}</view>
+                            <view class="f28 c6 mt20 clamp2">{{item.address.Prov}}{{item.address.detail}}</view>
+                        </view>
+                    </navigator>
+                </view>
+                <view bindtap="housemakePhoneCall" class="user_info_phone flex_shrink" data-index="{{item.phone}}">
+                    <view class="mt10">
+                        <image src="https://www.haojian.cn/wximg/house/phoneicon.png"></image>
+                    </view>
+                    <view class="txt_center c3 f30 mt20">电话咨询</view>
+                </view>
+            </view>
+        </view>
+    </block>
+    <view class="null" wx:if="{{list.length==0}}">没有数据</view>
+    <view class="noNore pos" wx:if="{{!hasNext&&list.length!=0}}">
+        <view class="noNore1"></view>
+        <view class="noNore2 f32 c9 txt_center">没有更多数据了</view>
+    </view>
+    <include src="/pages/commonPage/copyright.wxml" wx:if="{{list.length==0}}"></include>
+</block>

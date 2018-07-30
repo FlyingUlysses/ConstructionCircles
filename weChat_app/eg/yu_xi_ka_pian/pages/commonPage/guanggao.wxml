@@ -1,0 +1,7 @@
+<view class="tankuang {{alterHidden}}"></view>
+<view class="guang1 {{alterHidden}}">
+    <view bindtap="shopListEvent" class="guang11" data-img="{{alter[0].image.original_url}}" data-types="openWindow" data-url="{{alter[0].link}}" mode="scaleToFill">
+        <image src="{{alter[0].image.original_url}}"></image>
+    </view>
+    <image bindtap="shopListEvent" class="guang12" data-types="ggHide" src="https://www.haojian.cn/wximg/close1.png"></image>
+</view>

@@ -1,0 +1,26 @@
+<view bindtap="bindPhoneNumber" class="tankuang {{tankuang[3]}}" data-index="3" data-types="close"></view>
+<view class="alter1 {{tankuang[3]}}">
+    <view class="alterTitle">
+        <view bindtap="bindPhoneNumber" class="alterClose txt_center" data-index="3" data-types="close">
+            <image src="https://www.haojian.cn/wximg/close1.png"></image>
+        </view>
+        <view class="f34 c3 txt_center bbe9s">绑定手机号</view>
+    </view>
+    <form bindsubmit="bindPhoneNumber" data-types="bindPhone">
+        <view class="loginPassword2" wx:if="{{bindPhone}}">
+            <input bindinput="bindPhoneNumber" class="loginPassword2_1 loginPassword2_1_0 c6 f30" data-types="oldphone" name="oldphone" placeholder="请输入旧手机号" type="number" value="{{bindPhone1}}"></input>
+            <view bindtap="bindPhoneNumber" class="loginPassword2_2 bgff8 cf f24 txt_center" data-index="3" data-types="sendCode" style="background:#{{peise.mcolor}}">{{CountdownVal[3]}}</view>
+        </view>
+        <view class="loginPassword2" wx:if="{{bindPhone}}">
+            <input class="loginPassword2_1 c6 f30" name="oldcode" placeholder="请输入旧手机短信验证码" type="number" value="{{bindCode1}}"></input>
+        </view>
+        <view class="loginPassword2">
+            <input bindinput="bindPhoneNumber" class="loginPassword2_1 c6 f30 loginPassword2_1_0" data-types="phone" name="phone" placeholder="请输入手机号" type="number" value="{{bindPhone2}}"></input>
+            <view bindtap="bindPhoneNumber" class="loginPassword2_2 bgff8 cf f24 txt_center" data-index="2" data-types="sendCode" style="background:#{{peise.mcolor}}">{{CountdownVal[2]}}</view>
+        </view>
+        <view class="loginPassword2">
+            <input class="loginPassword2_1 c6 f30" name="code" placeholder="请输入短信验证码" type="number" value="{{bindCode2}}"></input>
+        </view>
+        <button class="loginPassword3 bgff8 cf f34 txt_center" formType="submit" style="background:#{{peise.mcolor}}">确认提交</button>
+    </form>
+</view>

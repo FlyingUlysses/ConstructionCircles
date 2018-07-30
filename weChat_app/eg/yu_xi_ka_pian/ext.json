@@ -1,0 +1,37 @@
+{
+    "extEnable": true,
+    "extAppid": "wx332c87ca6f9e6901",
+    "ext": {
+        "acid": "3644",
+        "pages": {
+            "page0": {
+                "name": "album",
+                "id": "0",
+                "title": "无聊"
+            },
+            "page1": {
+                "name": "userDefined",
+                "id": "8951",
+                "title": "卡片"
+            },
+            "page2": {
+                "name": "about",
+                "id": "0",
+                "title": "我们"
+            }
+        },
+        "colors": {
+            "mcolor": "ff8542",
+            "acolor": "36bb81",
+            "ok": "https://www.haojian.cn/images/colorings/1/radio.png",
+            "like": "https://www.haojian.cn/images/colorings/1/like.png",
+            "icon": "https://www.haojian.cn/images/colorings/1/selected.png",
+            "editIcon": "https://www.haojian.cn/images/colorings/1/edit_data.png"
+        },
+        "ald_config": {
+            "app_key": "083981086cc16c2c533425d638a007ed",
+            "getLocation": "0",
+            "getUserinfo": "0"
+        }
+    }
+}

@@ -1,0 +1,8 @@
+<view class="topBanner mb20" wx:if="{{banner.length>0}}">
+    <image bindtap="shopListEvent" class="topBanner" data-types="openWindow" data-url="{{banner[0].link}}" mode="scaleToFill" src="{{banner[0].image.original_url}}" wx:if="{{banner.length==1}}"></image>
+    <swiper circular autoplay="true" class="topBanner" duration="1000" indicatorDots="true" interval="3000" wx:else>
+        <swiper-item wx:for="{{banner}}">
+            <image bindtap="shopListEvent" class="topBanner" data-types="openWindow" data-url="{{item.link}}" mode="scaleToFill" src="{{item.image.original_url}}"></image>
+        </swiper-item>
+    </swiper>
+</view>

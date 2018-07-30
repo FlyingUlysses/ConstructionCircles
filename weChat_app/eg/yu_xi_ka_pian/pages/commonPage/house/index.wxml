@@ -1,0 +1,75 @@
+<block wx:if="{{alterRequestStatus}}">
+    <include src="/pages/commonPage/banner.wxml"></include>
+    <view class="ptb20 plr30 box_b" wx:if="{{switch_menus.length>0}}">
+        <view class="flex_between flex_items bgfff h_search1">
+            <picker bindchange="houseEvent" data-types="housePickerChange" range="{{switch_menus}}" rangeKey="menu_name" value="{{index}}">
+                <view class="h_search11 flex_around flex_items">
+                    <view class="f24 c6">{{searchdedefaultvalue}}</view>
+                    <image class="h_search11_down" src="https://www.haojian.cn/wximg/house/down.png"></image>
+                </view>
+            </picker>
+            <view class="h_search12 flex1 f24 c9">
+                <input bindinput="houseEvent" data-types="housesearchInput" placeholder="搜索关键词：如日租" type="text"></input>
+            </view>
+            <view bindtap="houseEvent" class="h_search13" data-types="housesearch" style="background:#{{peise.mcolor}}">
+                <image src="https://www.haojian.cn/wximg/house/search_input.png"></image>
+            </view>
+        </view>
+    </view>
+    <view class="flex_warp pt30 bgfff">
+        <view bindtap="houseEvent" class="h_nav txt_center mb30" data-index="{{item.menu_id}}" data-types="houseentermenu" wx:for="{{visiblemenus}}">
+            <image class="h_nav_img" mode="scaleToFill" src="{{item.menu_img}}"></image>
+            <view class="f30 c6">{{item.menu_name}}</view>
+        </view>
+        <view bindtap="houseEvent" class="h_nav txt_center mb30" data-index="8" data-types="houseentermenu" wx:if="{{isagent_status==1}}">
+            <image class="h_nav_img" mode="scaleToFill" src="https://www.haojian.cn/wximg/house/jjr.png"></image>
+            <view class="f30 c6">经纪人发布</view>
+        </view>
+    </view>
+    <view class="mt20 ptb30 bgfff" wx:if="{{switch_menus.length>1}}">
+        <view class="h_type flex_between txt_center f30 c3" style="border-color:#{{peise.mcolor}}">
+            <view bindtap="houseEvent" class="flex1 {{switch_menus_status==1?'cf':''}}" data-index="1" data-types="nav" style="background:#{{switch_menus_status==1?peise.mcolor:''}}">{{switch_menus[0].menu_name}}</view>
+            <view bindtap="houseEvent" class="flex1 {{switch_menus_status==2?'cf':''}}" data-index="2" data-types="nav" style="background:#{{switch_menus_status==2?peise.mcolor:''}}">{{switch_menus[1].menu_name}}</view>
+        </view>
+    </view>
+    <block wx:if="{{requestStatus}}">
+        <block wx:if="{{list.length>0}}">
+            <view class="bgfff" wx:for="{{list}}">
+                <navigator hoverClass="none" url="/pages/house/pages/detail/detail?id={{item.id}}">
+                    <view class="bte9s p30 b0x_b flex_start">
+                        <view class="pos h_list_img flex_shrink pos">
+                            <image class="h_list_img" mode="scaleToFill" src="{{item.img.thumb_small_url}}"></image>
+                            <view wx:if="{{item.isTop==1}}">
+                                <view class="h_list_zd cf txt_center f20" style="background:#{{peise.mcolor}}">置顶</view>
+                            </view>
+                        </view>
+                        <view class="flex1 pl20 box_b">
+                            <view class="f28 c3 clamp1">{{item.title}}</view>
+                            <view class="flex_between flex_items mt10">
+                                <view class="f24 c6" wx:if="{{item.model}}">{{item.model}} {{item.acreage}}㎡</view>
+                                <view class="f24 c6" wx:else>{{item.acreage}}㎡</view>
+                                <view class="f32 cff5">{{item.price}}</view>
+                            </view>
+                            <view class="flex_between flex_items mt10">
+                                <view class="flex_start flex_items pr20 box_b">
+                                    <image class="h_list_loc flex_shrink" src="https://www.haojian.cn/wximg/house/Location.png"></image>
+                                    <view class="f24 c9 clamp1 ml20">{{item.address}}</view>
+                                </view>
+                                <view class="f20 c9 flex_shrink">{{item.updatetime}}</view>
+                            </view>
+                            <view class="flex_start f22 mt10">
+                                <view class="h_list_desc mr10" data-index="{{index}}" wx:for="{{item.label}}">{{item}}</view>
+                            </view>
+                        </view>
+                    </view>
+                </navigator>
+            </view>
+        </block>
+        <view class="noDetail" wx:if="{{list.length==0}}">没有数据</view>
+        <view class="noNore pos" wx:if="{{!hasNext&&list.length!=0}}">
+            <view class="noNore1"></view>
+            <view class="noNore2 f32 c9 txt_center">没有更多数据了</view>
+        </view>
+        <include src="/pages/commonPage/copyright.wxml" wx:if="{{list.length==0}}"></include>
+    </block>
+</block>

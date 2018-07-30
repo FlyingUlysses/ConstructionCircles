@@ -1,0 +1,4 @@
+<scroll-view class="scroll-view_H" scrollIntoView="{{info.toView}}" scrollX="true">
+    <view catchtap="onTapTag" class="top-bar-item txt_center {{index==info.activeIndex?'top-bar-active':''}}" data-id="{{item.id}}" data-index="{{index}}" data-type="{{listDataType}}" id="category_{{index}}" style="color:#{{index==info.activeIndex?peise.mcolor:''}}" wx:for="{{navList}}">{{item.name}}<view class="top-bar-item_line" style="background:#{{peise.mcolor}}"></view>
+    </view>
+</scroll-view>

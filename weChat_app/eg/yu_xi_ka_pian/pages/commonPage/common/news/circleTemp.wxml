@@ -1,0 +1,44 @@
+<view class="nm_1_1 f20 c9 bbe9d plr30 flex_between flex_items">
+    <view class="flex_start flex_items">
+        <image class="nm_1_1_1 mr10" src="https://www.haojian.cn/wximg/time_icon.png"></image>
+        <view>{{item.datetime}}</view>
+    </view>
+    <view class="news_circle_hb_btn" wx:if="{{item.hongbao_pool}}">福利</view>
+</view>
+<navigator class="nm_1_2 c3 f32 mt20 plr30 {{item.isMore?'clamp4':''}}" hoverClass="none" url="/pages/newMovement/pages/newsDetail/newsDetail?newsId={{item.id}}&index={{index}}">{{item.info}}</navigator>
+<view wx:if="{{item.info.length>60}}">
+    <view bindtap="newsEvent" class="newMore f32 p30" data-index="{{index}}" data-types="zhankaiMore" wx:if="{{item.isMore}}">展开更多</view>
+    <view bindtap="newsEvent" class="newMore f32 p30" data-index="{{index}}" data-types="yincangMore" wx:if="{{!item.isMore}}">收起</view>
+</view>
+<view class="flex_warp plr30 mb10 box_b" wx:if="{{item.attachments}}">
+    <view class="nm_1_3_1" wx:for="{{item.attachments}}" wx:for-index="index_2" wx:for-item="imgList">
+        <view bindtap="seeBigImg" class="nm_1_3_1_1" data-imgurl="{{imgList.original_url}}" data-index="{{index}}">
+            <image mode="scaleToFill" src="{{imgList.thumb_small_url}}"></image>
+        </view>
+    </view>
+</view>
+<view bindtap="openWindow" class="nm_1_4 f24 bte9s" data-url="{{item.ref_link}}" wx:if="{{item.ref_title}}">
+    <image class="nm_1_4_1" src="https://www.haojian.cn/wximg/nm2.png"></image>
+    <view class="oneLine mr20 text_overflow">{{item.ref_title}}</view>
+    <image class="nm_1_4_2" src="https://www.haojian.cn/wximg/nm3.png"></image>
+</view>
+<view class="ptb30 flex_end f24 pr30">
+    <view wx:if="{{item.iscomments==1}}">
+        <navigator class="dongtai_list_1_2_5_2" data-index="{{index}}" hoverClass="none" url="/pages/newMovement/pages/newsDetail/newsDetail?newsId={{item.id}}&index={{index}}">
+            <image class="dongtai_list_pinglun" src="https://www.haojian.cn/wximg/news/pinglun.png"></image>
+            <view class="numberCls">{{item.comment_count}}</view>
+        </navigator>
+    </view>
+    <view bindtap="newsEvent" class="dongtai_list_1_2_5_1" data-id="{{item.id}}" data-index="{{index}}" data-method="DELETE" data-types="newsLiken" wx:if="{{item.is_like}}">
+        <image class="dongtai_list_dianzan" src="https://www.haojian.cn/wximg/shequn/dianzan1.png"></image>
+        <view class="numberCls">{{item.like_count}}</view>
+    </view>
+    <view bindtap="newsEvent" class="dongtai_list_1_2_5_1" data-id="{{item.id}}" data-index="{{index}}" data-method="PUT" data-types="newsLiken" wx:else>
+        <image class="dongtai_list_dianzan" src="https://www.haojian.cn/wximg/shequn/dianzan.png"></image>
+        <view class="numberCls">{{item.like_count}}</view>
+    </view>
+    <view class="dongtai_list_1_2_5_1" wx:if="{{item.isviews==1}}">
+        <image class="dongtai_list_view" src="https://www.haojian.cn/wximg/ad2.png"></image>
+        <view class="numberCls">{{item.views}}</view>
+    </view>
+</view>

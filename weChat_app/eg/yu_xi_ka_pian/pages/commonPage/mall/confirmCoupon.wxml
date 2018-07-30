@@ -1,0 +1,21 @@
+<view class="space" wx:if="{{couponData.length>0}}"></view>
+<navigator hoverClass="none" url="/pages/market/pages/coupon/selectCoupon/selectCoupon" wx:if="{{couponData.length>0}}">
+    <view class="favorable_style bgfff bbe9s">
+        <view class="flex_start">
+            <view class="f28 c3">优惠券</view>
+            <view class="confirmYhq ml20" wx:if="{{selectedCoupon&&selectedCoupon.id!==-1}}">已选1张</view>
+            <view class="confirmYhq ml20" wx:else>{{couponData.length}}张可用</view>
+        </view>
+        <view class="f24 c6 pr30" wx:if="{{selectedCoupon&&selectedCoupon.id!==-1}}">- ¥ {{selectedCoupon.discount}}</view>
+        <view class="f24 c6 pr30" wx:else>未使用</view>
+        <image class="rightIcon" src="https://www.haojian.cn/wximg/more.png"></image>
+    </view>
+</navigator>
+<view catchtap="showFavorableMadel" class="favorable_style bgfff {{couponData.length>0?'':'mt20'}}" wx:if="{{promotions.length>0}}">
+    <view class="flex_start">
+        <view class="f28 c3 flex_shrink">满减</view>
+        <view class="confirmYhq ml20 clamp1" wx:if="{{index<2}}" wx:for="{{promotions}}">{{item.name}}</view>
+    </view>
+    <view class="f24 c6 pr30" wx:if="{{selPromotions}}">- ¥ {{selPromotions.discount}}</view>
+    <image class="rightIcon" src="https://www.haojian.cn/wximg/more.png"></image>
+</view>

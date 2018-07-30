@@ -1,0 +1,33 @@
+<include src="/pages/commonPage/common.wxml"></include>
+<view>
+    <view class="shopStar" wx:if="{{startStatus}}">
+        <image class="shopImg" mode="scaleToFill" src="{{shopImgUrl}}" wx:if="{{shopImgUrl}}"></image>
+        <view class="flex1">
+            <text>评分：</text>
+            <image catchtap="changestar" class="starImg" data-index="{{index}}" src="{{item}}" wx:for="{{gradeImg}}"></image>
+        </view>
+    </view>
+    <form bindsubmit="sendComment" reportSubmit="true">
+        <view>
+            <view class="p30 bgfff" wx:if="{{contentStatus}}">
+                <view class="publishDongTai_input1">
+                    <textarea class="f32 c3" maxlength="-1" name="desc" placeholder="输入评论内容..." placeholderClass="cc"></textarea>
+                </view>
+            </view>
+            <view class="publishDongTai_img" wx:if="{{imgStatus}}">
+                <block wx:if="{{imgList.length>0}}">
+                    <view class="publishDongTai_img_1" wx:for="{{imgList}}">
+                        <image class="publishDongTai_img_1_1" src="{{item}}"></image>
+                        <image bindtap="removeImg" class="publishDongTai_img_close" data-index="{{index}}" src="https://www.haojian.cn/wximg/shequn/publishClose.png"></image>
+                    </view>
+                </block>
+                <view class="publishDongTai_img_1" wx:if="{{imgList.length<9}}">
+                    <image bindtap="uploadImgs" class="publishDongTai_img_1_1" src="https://www.haojian.cn/wximg/shequn/publishImg.png"></image>
+                </view>
+            </view>
+        </view>
+        <view class="space120"></view>
+        <button class="commentBtn" formType="submit" style="background:#{{peise.mcolor}}" wx:if="{{myInfo.displayname&&myInfo.avatar_url.original_url}}">提交</button>
+    </form>
+    <button bindgetuserinfo="userInfoHandler" class="commentBtn" openType="getUserInfo" style="background:#{{peise.mcolor}}" wx:if="{{myInfo.displayname==''&&myInfo.avatar_url.original_url==''}}">提交</button>
+</view>

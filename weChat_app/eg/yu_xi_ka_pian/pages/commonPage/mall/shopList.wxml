@@ -1,0 +1,52 @@
+<include src="/pages/commonPage/common.wxml"></include>
+<block wx:if="{{shopTempName}}">
+    <block wx:if="{{shopTempName==='side'}}">
+        <include src="filterBar.wxml"></include>
+        <include src="shopCategories.wxml"></include>
+    </block>
+    <view scrollTop="{{scrollTop}}" wx:else>
+        <view class="top_line"></view>
+        <view class="newsNavFxied f28" wx:if="{{navList.length>0}}">
+            <scroll-view class="scroll-view_H" scrollIntoView="{{mall.toView}}" scrollX="true" style="width: 100%">
+                <view catchtap="shopListEvent" class="top-bar-item txt_center {{index==currentTab?'top-bar-active':''}}" data-categoryid="{{item.id}}" data-current="{{index}}" data-types="swichNav" id="category_{{index}}" style="color:#{{currentTab===index?peise.mcolor:''}}" wx:for="{{navList}}">{{item.name}}<view class="top-bar-item_line" style="background:#{{currentTab===index?peise.mcolor:''}}"></view>
+                </view>
+            </scroll-view>
+        </view>
+        <block wx:if="{{seconNavL&&seconNavL.length>0}}">
+            <view catchtap="shopListEvent" class="madel_box" data-types="closeNav"></view>
+            <view class="secon_nav_box_1">
+                <view catchtap="shopListEvent" class="secon_nav_item_1 {{mall.seconNav==item.id?'active':''}}" data-categoryid="{{item.id}}" data-current="{{index}}" data-types="seconNav" wx:for="{{seconNavL}}">{{item.name}}</view>
+            </view>
+        </block>
+        <include src="filterBar.wxml"></include>
+        <include src="/pages/commonPage/banner.wxml"></include>
+        <block wx:if="{{requestStatus}}">
+            <block wx:if="{{shopTempName}}">
+                <view class="shopList0" wx:if="{{shopTempName=='1col_large'}}">
+                    <include src="temp0.wxml" wx:for="{{mall.shopData}}"></include>
+                </view>
+                <view class="shopList1" wx:if="{{shopTempName=='1col'}}">
+                    <block wx:for="{{mall.shopData}}">
+                        <include src="temp1.wxml"></include>
+                        <view class="space"></view>
+                    </block>
+                </view>
+                <view class="shopList2" wx:if="{{shopTempName=='2col'}}">
+                    <include src="temp2.wxml" wx:for="{{mall.shopData}}"></include>
+                </view>
+            </block>
+            <view class="noComment" wx:if="{{mall.shopData.length==0}}">暂无商品</view>
+            <view class="noNore pos" wx:if="{{!mall.hasNext&&mall.shopData.length!=0}}">
+                <view class="noNore1"></view>
+                <view class="noNore2 f32 c9 txt_center">没有更多数据了</view>
+            </view>
+            <include src="/pages/commonPage/copyright.wxml" wx:if="{{mall.shopData.length==0}}"></include>
+        </block>
+    </view>
+</block>
+<image bindtap="onBackTop" class="scrolltop" src="https://www.laihukeji.com/wximg/top_back.png" style="bottom:120rpx" wx:if="{{showGoTop&&isPageScrollTo}}"></image>
+<navigator class="cartNumIcon" hoverClass="none" url="/pages/mall/pages/shopCart/shopCart" wx:if="{{cartNum>0}}">
+    <view class="cartNum" style="{{cartNum>=100?'padding:0 8rpx':'width:30rpx'}}">{{cartNum}}</view>
+    <image class="cartNum_img" src="https://www.haojian.cn/wximg/mall/cart.png"></image>
+</navigator>
+<include src="/pages/commonPage/mall/shopSkus.wxml"></include>

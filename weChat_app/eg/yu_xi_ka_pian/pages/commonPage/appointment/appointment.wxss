@@ -1,0 +1,44 @@
+.h120 {
+    width: 180rpx;
+    height: 180rpx;
+    display: block;
+    margin: 0 auto;
+}
+
+.w33 {
+    width: 33.333%;
+}
+
+.voice_icon {
+    width: 40rpx;
+    height: 40rpx;
+}
+
+.voice_icon1 {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 60rpx;
+    left: 0rpx;
+    z-index: 100;
+}
+
+.yy_GongGao {
+    height: 60rpx;
+    line-height: 60rpx;
+    font-size: 24rpx;
+    text-indent: 60rpx;
+    width: 100%;
+    overflow: hidden;
+}
+
+.yy_marquee {
+    width: 100%;
+    position: relative;
+}
+
+.yy_marquee_text {
+    white-space: nowrap;
+    position: absolute;
+    top: 0;
+}

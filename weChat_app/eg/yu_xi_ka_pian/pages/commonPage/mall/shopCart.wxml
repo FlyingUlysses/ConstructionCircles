@@ -1,0 +1,72 @@
+<template name="default">
+    <view class="bgfff mt20 flex_items flex_start pl30 box_b" wx:for="{{list}}">
+        <icon catchtap="shopCartEvent" color="#ff8542" data-index="{{index}}" data-types="selectGoods" size="20" type="success" wx:if="{{item.checked}}"></icon>
+        <icon catchtap="shopCartEvent" data-index="{{index}}" data-types="selectGoods" size="20" type="circle" wx:else></icon>
+        <view bindtap="shopCartEvent" class="goods_info" data-id="{{item.product_id}}" data-types="goDetialPage">
+            <image mode="scaleToFill" src="{{item.sku.preview.thumb_small_url}}"></image>
+            <view class="flex1 flex_between flex_column">
+                <text class="goods_title">{{item.title}}</text>
+                <view class="flex_column">
+                    <text class="f24 c9 mb10">{{item.alias==='default'?'':item.alias}}</text>
+                    <view class="flex_between flex_items">
+                        <view class="goods_price">
+                            <text class="f28 cff5">¥ {{item.price}}</text>
+                            <text class="old_price" wx:if="{{item.oldPrice}}">¥ {{item.oldPrice}}</text>
+                        </view>
+                        <text class="f24 c9">x{{item.count}}<text class="cff8 f20" wx:if="{{item.kc}}">(库存不足)</text>
+                        </text>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</template>
+<template name="edit">
+    <view class="bgfff mt20 flex_items flex_start pl30 box_b" wx:for="{{list}}">
+        <icon catchtap="shopCartEvent" color="#ff8542" data-index="{{index}}" data-types="selectGoods" size="20" type="success" wx:if="{{item.checked}}"></icon>
+        <icon catchtap="shopCartEvent" data-index="{{index}}" data-types="selectGoods" size="20" type="circle" wx:else></icon>
+        <view class="goods_info">
+            <image mode="scaleToFill" src="{{item.sku.preview.thumb_small_url}}"></image>
+            <view class="delete_text_info">
+                <view class="flex_center">
+                    <view catchtap="shopCartEvent" class="jian_btn plr20 cc" data-index="{{index}}" data-types="downNumber">-</view>
+                    <text class="f34 c3 txt_center flex1">{{item.count}}</text>
+                    <view catchtap="shopCartEvent" class="jia_btn plr20" data-index="{{index}}" data-types="addNumber">+</view>
+                </view>
+                <view class="flex_between flex_items">
+                    <text class="f24 c9 mb10">{{item.alias==='default'?'':item.alias}}</text>
+                </view>
+            </view>
+        </view>
+        <view catchtap="shopCartEvent" class="delete_goods {{item.checked?'cf bgff5a':'defaultDelete'}}" data-index="{{index}}" data-skuid="{{item.sku_id}}" data-types="deleteGoods">删除</view>
+    </view>
+</template>
+<include src="/pages/commonPage/common.wxml"></include>
+<block wx:if="{{requestStatus}}">
+    <view class="flex_column" wx:if="{{list.length>0}}">
+        <view class="shopTitle flex_items plr30 box_b flex_start bgfff">
+            <icon catchtap="shopCartEvent" color="#ff8542" data-types="selectAll" size="20" type="success" wx:if="{{is_selectAll}}"></icon>
+            <icon catchtap="shopCartEvent" data-types="selectAll" size="20" type="circle" wx:else></icon>
+            <view class="flex_between flex1 pl30 box_b c3 f32">
+                <text catchtap="shopCartEvent" data-types="selectAll">全选商品</text>
+                <text catchtap="shopCartEvent" class="c9" data-types="caozuoCart">{{is_edit?'完成':'编辑'}}</text>
+            </view>
+        </view>
+        <view class="shop_list_box">
+            <template is="{{is_edit?'edit':'default'}}" data="{{list:list}}"></template>
+        </view>
+        <view class="bottom_total_bar bgfff {{is_edit?'edit flex_end':'flex_between'}}">
+            <view class="flex1 pl30 c3 f28 bte9s" wx:if="{{!is_edit}}">
+                <text>合计：</text>
+                <text class="color-red mr30">¥ {{totalMoney}}</text>
+                <text class="size-20 c9">不含运费</text>
+            </view>
+            <view bindtap="shopCartEvent" class="jiesuan_btn txt_center f28 cf {{is_edit?selectCount>0?'bgff5a':'defaultDelete':selectCount>0?'bgff8':'defaultDelete'}}" data-types="{{is_edit?'deleteCart':'goPlay'}}">
+                <text wx:if="{{is_edit}}">删除</text>
+                <text wx:else>结算{{totalNumber>0?'('+totalNumber+')':''}}</text>
+            </view>
+        </view>
+    </view>
+    <view class="null" wx:if="{{list.length==0}}">没有数据</view>
+    <include src="/pages/commonPage/copyright.wxml" wx:if="{{list.length==0}}"></include>
+</block>

@@ -1,0 +1,55 @@
+<view class="tankuang {{showtk?'show':'hide'}}"></view>
+<view class="alter1 {{showtk&&showPrize?'show':'hide'}}">
+    <view class="alterTitle">
+        <view bindtap="close" class="alterClose">
+            <image src="https://www.haojian.cn/wximg/close1.png"></image>
+        </view>
+        <view class="f34 txt_center c3 bbe9s" wx:if="{{showType}}">{{showType==='all'?'中奖名单':'我抽到的奖品'}}</view>
+    </view>
+    <view class="prize_list_top plr30" wx:if="{{showType==='all'}}">共有{{prizeNum}}人获得奖品</view>
+    <view class="prize_list_top plr30" wx:else>共获得{{prizeNum}}件奖品</view>
+    <scroll-view scrollY bindscrolltolower="lower" class="prize_list_box">
+        <block wx:if="{{showType==='all'}}">
+            <view class="prize_item flex_between p30 {{index===0?'':'bte9s'}}" wx:for="{{winlist}}">
+                <view class="prize_item_rt flex_column flex_between">
+                    <view class="f30 c3 text_overflow">{{item.heuser.nickName}}</view>
+                    <view class="f24 c9 mt10">{{item.addtime}}</view>
+                </view>
+                <view class="f28 c6">{{item.p_name}}</view>
+            </view>
+        </block>
+        <block wx:else>
+            <view class="prize_item flex_start p30 {{index===0?'':'bte9s'}}" wx:for="{{winlist}}">
+                <image class="flex_shrink" src="{{item.p_img}}"></image>
+                <view class="prize_item_rt flex_column flex_between">
+                    <view class="f30 c3 text_overflow">{{item.p_name}}</view>
+                    <view class="f24 c9">{{item.addtime}}</view>
+                </view>
+            </view>
+        </block>
+    </scroll-view>
+</view>
+<view class="zp_alter" wx:if="{{showtk&&!showPrize&&!isMinning}}">
+    <image catchtap="close" class="zp_close" src="https://www.haojian.cn/wximg/market/No.png"></image>
+    <image class="zp_top" src="https://www.haojian.cn/wximg/market/zp_text.png"></image>
+    <view class="zp_content">
+        <image class="bg" src="https://www.haojian.cn/wximg/market/zp_bg_2.png"></image>
+        <image class="icon" src="https://www.haojian.cn/wximg/market/zp_cry.png"></image>
+        <view class="f30 cf">谢谢参与</view>
+    </view>
+    <view catchtap="close" class="zp_btn_big">继续抽奖</view>
+</view>
+<view class="zp_alter" wx:if="{{showtk&&!showPrize&&isMinning}}">
+    <image class="zp_zj_bg" src="https://www.haojian.cn/wximg/market/zp_zj_bg.png"></image>
+    <image catchtap="close" class="zp_close" src="https://www.haojian.cn/wximg/market/No.png"></image>
+    <image class="zp_top" src="https://www.haojian.cn/wximg/market/zp_text_1.png"></image>
+    <view class="zp_content flex_center flex_column">
+        <image class="bg" src="https://www.haojian.cn/wximg/market/zp_bg_2.png"></image>
+        <view class="f24 cf">恭喜您获得</view>
+        <view class="f40 cf mt20">{{prizeInfo.product.name}}</view>
+    </view>
+    <view class="zp_btn_box flex_between">
+        <view catchtap="moreModel" class="btn btn_1" data-types="myprize">查看奖品</view>
+        <view catchtap="close" class="btn btn_2" data-types="again">继续抽奖</view>
+    </view>
+</view>

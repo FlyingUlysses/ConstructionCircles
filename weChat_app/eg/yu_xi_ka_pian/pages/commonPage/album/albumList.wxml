@@ -1,0 +1,28 @@
+<include src="/pages/commonPage/common.wxml"></include>
+<block wx:if="{{requestStatus}}">
+    <view class="album">
+        <view class="albumList" wx:if="{{view_type==='normal'}}">
+            <view bindtap="albumEvent" class="albumItem" data-id="{{item.id}}" data-total="{{item.photo_count}}" data-types="viewBigImg" wx:for="{{list}}">
+                <image mode="scaleToFill" src="{{item.cover.thumb_medium_url}}"></image>
+                <view class="title_0">{{item.name}}</view>
+                <view class="f24 c9 pl15">共{{item.photo_count}}张</view>
+            </view>
+        </view>
+        <view class="albumContainer" wx:else>
+            <scroll-view bindscrolltolower="albumEvent" class="albumList_1" data-types="scrolltolower" scrollX="{{true}}">
+                <view bindtap="albumEvent" class="albumItem_1" data-id="{{item.id}}" data-total="{{item.photo_count}}" data-types="viewBigImg" wx:for="{{list}}">
+                    <image mode="scaleToFill" src="{{item.cover.original_url}}"></image>
+                    <view class="text_box">
+                        <view class="title_1">{{item.name}}</view>
+                        <view class="albumItem_1_info">
+                            <text class="f28 c9" style="text-align: left">共{{item.photo_count}}张</text>
+                            <text class="f22 cc">{{item.datetime}}</text>
+                        </view>
+                    </view>
+                    <view class="showShadow"></view>
+                </view>
+            </scroll-view>
+        </view>
+    </view>
+    <view class="noRow" wx:if="{{list.length==0}}">暂未添加相册！</view>
+</block>

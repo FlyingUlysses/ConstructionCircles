@@ -1,0 +1,111 @@
+<view catchtap="payEvent" class="tankuang" data-types="closePayTypeTk" wx:if="{{showPayMethod}}"></view>
+<view class="alter1" wx:if="{{showPayMethod}}">
+    <view class="alterTitle bbe9s">
+        <view catchtap="payEvent" class="alterClose" data-types="closePayTypeTk">
+            <image src="https://www.haojian.cn/wximg/close1.png"></image>
+        </view>
+        <view class="txt_center f34 c333">选择支付方式</view>
+    </view>
+    <view class="txt_center bgfa ptb30">
+        <text class="f24 c6">支付金额：</text>
+        <text class="f40 cff5">¥{{total_money}}</text>
+        <text class="f28 cff5" wx:if="{{!isGift&&discount}}">(已优惠¥{{discount}}元)</text>
+    </view>
+    <view class="paymoth_content mt20">
+        <form bindsubmit="payEvent" data-types="payMethedSure" reportSubmit="true">
+            <view catchtap="payEvent" class="flex_between flex_items p30" data-index="0" data-types="chooseType">
+                <view class="flex_start flex_items">
+                    <view class="payIconBox pos">
+                        <image class="wxIcon" src="https://www.haojian.cn/wximg/wxIcon.png"></image>
+                    </view>
+                    <view class="f30 c3">微信支付</view>
+                </view>
+                <icon size="20" type="{{payMethod[0]}}"></icon>
+            </view>
+            <view catchtap="payEvent" class="flex_between flex_items p30 bbe9s" data-index="1" data-types="chooseType" wx:if="{{config.modules.cashcard}}">
+                <view class="flex_start flex_items">
+                    <view class="payIconBox pos" style="background: #ff8542">
+                        <image class="qbIcon" src="https://www.haojian.cn/wximg/qbPay.png"></image>
+                    </view>
+                    <view>
+                        <text class="f30 c3">余额支付</text>
+                        <text class="f22 c9">(余额{{cash_balance}}元)</text>
+                    </view>
+                </view>
+                <icon size="20" type="{{payMethod[1]}}"></icon>
+            </view>
+            <view class="flex_between mt40 flex_items plr30" wx:if="{{convertible}}">
+                <view catchtap="onUseCode" class="yhm_lf flex_start flex_items">
+                    <view class="yhmCheckBox f24 active" wx:if="{{useCode}}">
+                        <image src="https://www.haojian.cn/wximg/checked.png"></image>
+                    </view>
+                    <view class="yhmCheckBox" wx:else></view>
+                    <view class="f30 c3">使用兑换码</view>
+                </view>
+                <input bindinput="changeVal" class="couponCode f30 c3" name="code" placeholder="请输入兑换码" placeholderStyle="#cccccc" type="number" value="{{codeVal}}" wx:if="{{useCode}}"></input>
+            </view>
+            <button class="pay_meth_sureBtn1 mt30" formType="submit">下一步</button>
+        </form>
+    </view>
+</view>
+<view bindtap="payEvent" class="tankuang {{payTk}}" data-types="closeBaoMing"></view>
+<view class="alter1 {{payTk}}">
+    <view class="alterTitle">
+        <view bindtap="payEvent" class="alterClose txt_center" data-types="closeBaoMing">
+            <image src="https://www.haojian.cn/wximg/close1.png"></image>
+        </view>
+        <view class="f34 txt_center c3" wx:if="{{pageN==='myWallet'}}">立即提现</view>
+        <view class="f34 txt_center c3" wx:else>立即支付</view>
+        <view class="payP1_3 f20">
+            <text class="c9">余额：</text>
+            <text class="c36b" wx:if="{{pageN==='myWallet'}}">￥{{balance}}</text>
+            <text class="c36b" wx:else>￥{{cash_balance}}</text>
+        </view>
+    </view>
+    <view class="ptb30 bte9s txt_center">
+        <text class="f24 c6" wx:if="{{pageN==='myWallet'}}">提现金额：</text>
+        <text class="f24 c6" wx:else>支付金额：</text>
+        <text class="f40 cff5">¥{{total_money}}</text>
+    </view>
+    <view class="payP3 f30 cc txt_center">请输入支付密码</view>
+    <view class="payP4">
+        <view class="payP4_1">
+            <view bindtap="payEvent" class="payP4_1_2 flex_start" data-types="boradShow">
+                <view class="payP4_1_1 txt_center">{{showPassword[0]}}</view>
+                <view class="payP4_1_1 txt_center">{{showPassword[1]}}</view>
+                <view class="payP4_1_1 txt_center">{{showPassword[2]}}</view>
+                <view class="payP4_1_1 txt_center">{{showPassword[3]}}</view>
+                <view class="payP4_1_1 txt_center">{{showPassword[4]}}</view>
+                <view class="payP4_1_1 txt_center">{{showPassword[5]}}</view>
+            </view>
+        </view>
+    </view>
+    <view class="keyborad {{Board}}">
+        <view bindtap="payEvent" class="keyborad_1" data-types="boardClose">
+            <image src="https://www.haojian.cn/wximg/down.png"></image>
+        </view>
+        <view class="ub keyborad_2">
+            <view bindtap="payEvent" class="ub-f1 keyborad_2_1" data-number="1" data-types="numberClick">1</view>
+            <view bindtap="payEvent" class="ub-f1 keyborad_2_1 keyborad_2_2" data-number="2" data-types="numberClick">2</view>
+            <view bindtap="payEvent" class="ub-f1 keyborad_2_1" data-number="3" data-types="numberClick">3</view>
+        </view>
+        <view class="ub keyborad_2">
+            <view bindtap="payEvent" class="ub-f1 keyborad_2_1" data-number="4" data-types="numberClick">4</view>
+            <view bindtap="payEvent" class="ub-f1 keyborad_2_1 keyborad_2_2" data-number="5" data-types="numberClick">5</view>
+            <view bindtap="payEvent" class="ub-f1 keyborad_2_1" data-number="6" data-types="numberClick">6</view>
+        </view>
+        <view class="ub keyborad_2">
+            <view bindtap="payEvent" class="ub-f1 keyborad_2_1" data-number="7" data-types="numberClick">7</view>
+            <view bindtap="payEvent" class="ub-f1 keyborad_2_1 keyborad_2_2" data-number="8" data-types="numberClick">8</view>
+            <view bindtap="payEvent" class="ub-f1 keyborad_2_1" data-number="9" data-types="numberClick">9</view>
+        </view>
+        <view class="ub keyborad_2">
+            <view class="ub-f1 keyborad_2_1 keyborad_2_3"></view>
+            <view bindtap="payEvent" class="ub-f1 keyborad_2_1 keyborad_2_2" data-number="0" data-types="numberClick">0</view>
+            <view bindtap="payEvent" class="ub-f1 keyborad_2_1 keyborad_2_3" data-types="delNumber">
+                <image class="keyborad_2_1_1" src="https://www.haojian.cn/wximg/keyboardClose.png"></image>
+            </view>
+        </view>
+    </view>
+</view>
+<include src="/pages/commonPage/guanggao.wxml"></include>

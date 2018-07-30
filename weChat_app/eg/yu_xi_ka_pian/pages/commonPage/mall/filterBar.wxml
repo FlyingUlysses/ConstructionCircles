@@ -1,0 +1,22 @@
+<view class="filter_box" style="top: {{shopTempName==='side'||navList.length==0?'0':'100rpx'}};background:#{{peise.mcolor}}">
+    <view catchtap="shopListEvent" class="filter_item {{mall.order==='recommend'?'opacity100':''}}" data-typename="recommend" data-types="chooseSort">
+        <text>综合</text>
+        <view class="arrow_down"></view>
+    </view>
+    <view catchtap="shopListEvent" class="filter_item {{mall.order==='sales'?'opacity100':''}}" data-typename="sales" data-types="chooseSort">
+        <text>销量</text>
+        <view class="arrow_down"></view>
+    </view>
+    <view catchtap="shopListEvent" class="filter_item {{mall.order==='recent'?'opacity100':''}}" data-typename="recent" data-types="chooseSort">
+        <text>最新</text>
+        <view class="arrow_down"></view>
+    </view>
+    <view catchtap="shopListEvent" class="filter_item {{mall.order==='price'?'opacity100':''}}" data-orsort="{{mall.sort}}" data-typename="price" data-types="chooseSort">
+        <text>价格</text>
+        <view>
+            <view class="arrow_top {{mall.sort!==2?'':'opacity50'}}"></view>
+            <view class="arrow_down {{mall.sort!==1?'':'opacity50'}}"></view>
+        </view>
+    </view>
+</view>
+<view style="padding-top: {{shopTempName==='side'||navList.length==0?'90rpx':'200rpx'}}"></view>

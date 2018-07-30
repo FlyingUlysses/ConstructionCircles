@@ -1,0 +1,53 @@
+<view catchtap="danpinDetail" class="flex_start p30 box_b bte9s pos" data-id="{{item.target_id?item.target_id:item.id}}" data-index="{{index}}" data-kind="{{item.kind}}" data-productid="{{item.fee_product_id}}">
+    <view class="z_dp_list_img1 flex_shrink">
+        <image class="z_dp_list_img1" mode="scaleToFill" src="{{item.cover.thumb_small_url}}"></image>
+        <image class="z_dp_list_img2" src="https://www.haojian.cn/wximg/zhuanlan/bj1.png" wx:if="{{item.kind==='video'}}"></image>
+        <image class="z_dp_list_img2" src="https://www.haojian.cn/wximg/zhuanlan/bj2.png" wx:elif="{{item.kind==='audio'}}"></image>
+        <image class="z_dp_list_img2" src="https://www.haojian.cn/wximg/zhuanlan/bj3.png" wx:elif="{{item.kind==='article'}}"></image>
+    </view>
+    <view class="flex1 ml30 flex_between flex_column">
+        <view class="f32 c3 clamp1" wx:if="{{buybtn}}">{{item.title}}</view>
+        <view class="f32 c3 clamp2" wx:else>{{item.title}}</view>
+        <view catchtap="danpinDetail" class="flex_start mt20 flex_items" data-id="{{item.column.id}}" data-index="{{index}}" data-kind="zhuanlan" wx:if="{{item.column}}">
+            <view class="z_dp_list_t txt_center f20 cf">专栏</view>
+            <view class="c9 f26 ml10 clamp1">{{item.column.title}}</view>
+        </view>
+        <view class="mt10 flex_between">
+            <view class="flex_start f22 cc flex_items">
+                <view class="brc flex_start pr20 flex_items box_b">
+                    <image class="type_icon" src="https://www.haojian.cn/wximg/zhuanlan/video.png" wx:if="{{item.kind==='video'}}"></image>
+                    <image class="type_icon" src="https://www.haojian.cn/wximg/zhuanlan/audeo.png" wx:elif="{{item.kind==='audio'}}"></image>
+                    <image class="type_icon" src="https://www.haojian.cn/wximg/zhuanlan/tuwen.png" wx:elif="{{item.kind==='article'}}"></image>
+                    <text class="ml10">{{item.view_count}}</text>
+                </view>
+                <view class="flex_start brc plr20 box_b flex_items">
+                    <image class="comment_count_icon" src="https://www.haojian.cn/wximg/zhuanlan/pl.png"></image>
+                    <text class="ml10">{{item.comment_count}}</text>
+                </view>
+                <view class="flex_start pl20 box_b flex_items">
+                    <image class="type_icon" src="https://www.haojian.cn/wximg/zhuanlan/dz.png"></image>
+                    <text class="ml10">{{item.like_count}}</text>
+                </view>
+            </view>
+            <view class="f22 c6" wx:if="{{buybtn}}">{{item.create_time}}</view>
+        </view>
+        <view class="flex_between mt10 flex_items" wx:if="{{buybtn}}">
+            <view class="f32 cff5 flex_start flex_items" wx:if="{{item.fee>0}}">
+                <view>
+                    <text>¥</text>{{item.fee}}</view>
+                <view class="card_price_box ml20" wx:if="{{item.isMemberLearn&&item.member.isMember}}">
+                    <view class="price_lf flex_start flex_items">
+                        <image class="img_1" src="https://www.haojian.cn/wximg/market/card_price.png"></image>
+                        <image class="img_2" src="https://www.haojian.cn/wximg/market/card_price_icon.png"></image>
+                        <view class="f20 cf">会员价</view>
+                    </view>
+                    <view class="card_price">￥{{item.fee_member}}</view>
+                </view>
+            </view>
+            <view class="c56cba6 f28" wx:else>免费</view>
+            <view class="dingyue_btn bgccc cf f22 txt_center" wx:if="{{item.has_bought}}">已订阅</view>
+            <view class="dingyue_btn bgff8 cf f22 txt_center" wx:else>订阅</view>
+        </view>
+        <view class="f22 cc mt10" wx:else>{{item.start_time}}</view>
+    </view>
+</view>

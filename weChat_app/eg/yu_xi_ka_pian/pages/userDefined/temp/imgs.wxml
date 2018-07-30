@@ -1,0 +1,54 @@
+<block wx:if="{{item.data.display==='show'}}">
+    <block wx:if="{{item.data.cols==1}}">
+        <view class="imgs_cols" wx:for="{{item.data.list}}" wx:for-item="list">
+            <view bindtap="openWindow" class="imgs_1" data-url="{{list.url}}" wx:if="{{item.data.style==0}}">
+                <include src="/pages/userDefined/temp/imgsType1.wxml"></include>
+            </view>
+            <view bindtap="openWindow" class="imgs_1" data-url="{{list.url}}" wx:else>
+                <include src="/pages/userDefined/temp/imgsType2.wxml"></include>
+            </view>
+        </view>
+    </block>
+    <view class="imgs_cols" wx:elif="{{item.data.cols==2}}">
+        <block wx:for="{{item.data.list}}" wx:for-item="list">
+            <view bindtap="openWindow" class="imgs_2" data-url="{{list.url}}" wx:if="{{item.data.style==0}}">
+                <view class="imgs_2_1">
+                    <include src="/pages/userDefined/temp/imgsType1.wxml"></include>
+                </view>
+            </view>
+            <view bindtap="openWindow" class="imgs_2" data-url="{{list.url}}" wx:else>
+                <view class="imgs_2_1">
+                    <include src="/pages/userDefined/temp/imgsType2.wxml"></include>
+                </view>
+            </view>
+        </block>
+    </view>
+    <view class="imgs_cols" wx:elif="{{item.data.cols==3}}">
+        <block wx:for="{{item.data.list}}" wx:for-item="list">
+            <view bindtap="openWindow" class="imgs_3" data-url="{{list.url}}" wx:if="{{item.data.style==0}}">
+                <view class="imgs_2_1">
+                    <include src="/pages/userDefined/temp/imgsType1.wxml"></include>
+                </view>
+            </view>
+            <view bindtap="openWindow" class="imgs_3" data-url="{{list.url}}" wx:else>
+                <view class="imgs_2_1">
+                    <include src="/pages/userDefined/temp/imgsType2.wxml"></include>
+                </view>
+            </view>
+        </block>
+    </view>
+    <view class="imgs_cols" wx:elif="{{item.data.cols==4}}">
+        <block wx:for="{{item.data.list}}" wx:for-item="list">
+            <view bindtap="openWindow" class="imgs_4" data-url="{{list.url}}" wx:if="{{item.data.style==0}}">
+                <view class="imgs_2_1">
+                    <include src="/pages/userDefined/temp/imgsType1.wxml"></include>
+                </view>
+            </view>
+            <view bindtap="openWindow" class="imgs_4" data-url="{{list.url}}" wx:else>
+                <view class="imgs_2_1">
+                    <include src="/pages/userDefined/temp/imgsType2.wxml"></include>
+                </view>
+            </view>
+        </block>
+    </view>
+</block>

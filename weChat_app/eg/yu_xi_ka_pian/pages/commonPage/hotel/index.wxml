@@ -1,0 +1,55 @@
+<block wx:if="{{alterRequestStatus}}">
+    <include src="/pages/commonPage/banner.wxml"></include>
+    <view bindtap="hotelEvent" class="bgfff ptb30 mt20 flex_around txt_center bbe9s" data-types="BombBox">
+        <view>
+            <view class="f24 c9">请选择入住日期</view>
+            <view class="f32 mt30" style="color:#{{peise.mcolor}}">{{chosedTime}}</view>
+        </view>
+        <text class="Numberdays be9s f24 c9 txt_center">共{{daydates}}晚</text>
+        <view>
+            <view class="f24 c9">请选择离店时间</view>
+            <view class="f32 mt30" style="color:#{{peise.mcolor}}">{{chosedClock}}</view>
+        </view>
+    </view>
+    <view class="plr30 box_b bgfff pb30">
+        <input bindinput="hotelEvent" class="search bgfff plr30 box_b f28 c9" data-types="search" placeholder="关键词/酒店名称" type="text"></input>
+        <button bindtap="hotelEvent" class="search_button cf" data-types="many" style="background:#{{peise.mcolor}}">查找酒店</button>
+    </view>
+    <view class="bgfff pos bbe9s mt20">
+        <view class="nav flex_start">
+            <view bindtap="hotelEvent" class="navname f28 c3 ml10" data-av="{{index}}" data-types="navbarTap" style="color:#{{currentTab==index?peise.mcolor:''}}" wx:for="{{navs}}">{{item}}<image class="hotelDown" src="https://www.haojian.cn/wximg/appointment/down.png" wx:if="{{index!=0}}"></image>
+            </view>
+        </view>
+        <view class="twoM" style="width:100%;background:white;display:none" wx:if="{{currentTab==0}}">
+            <view wx:for="{{choseSele[currentTab-1]}}"></view>
+        </view>
+        <view class="pb20 twoM" style="width:100%;background:white;display:{{Rankdis}}" wx:else>
+            <view bindtap="hotelEvent" class="flex_column f28 flex_items ptb30 bbe9s" data-idx="{{index}}" data-types="selectRank" wx:for="{{choseSele[currentTab-1]}}">{{item}}</view>
+        </view>
+    </view>
+    <block wx:if="{{requestStatus}}">
+        <view class="bgfff pb30 mb20" wx:for="{{list}}">
+            <view bindtap="hotelEvent" class="plr30 box_b" data-mx="{{index}}" data-types="Hoteldetails">
+                <image class="Exhibition_image mt20" mode="scaleToFill" src="{{item.photo.thumb_medium_url}}"></image>
+                <view class="flex_between flex_items ptb20">
+                    <text class="clamp1 c3 f30">{{item.name}}</text>
+                    <view class="f22 c9 flex_shrink pl20 box_b">{{item.grade}}分 | {{item.comment}}人评论</view>
+                </view>
+                <view class="flex_between flex_items ptb20 bbe9s">
+                    <view class="project flex_start flex1">
+                        <view class="f22 p10 box_b mr10" wx:for="{{item.amenit}}">{{item.name}}</view>
+                    </view>
+                    <text class="f30 flex_shrink txt_right cff5">￥{{item.bottomPrice}}起</text>
+                </view>
+            </view>
+            <view bindtap="hotelEvent" class="f24 c9 mt20 plr30 box_b" data-index="{{index}}" data-types="HotelAddress">地址：{{item.address.Prov}}{{item.address.detail}}<text wx:if="{{item.distance>0}}">| {{item.distance}}km</text>
+            </view>
+        </view>
+        <view class="noDetail" wx:if="{{list.length==0}}">没有数据</view>
+        <view class="noNore pos" wx:if="{{!hasNext&&list.length!=0}}">
+            <view class="noNore1"></view>
+            <view class="noNore2 f32 c9 txt_center">没有更多数据了</view>
+        </view>
+    </block>
+    <include src="date.wxml"></include>
+</block>

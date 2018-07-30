@@ -1,0 +1,16 @@
+<view class="sorting_box flex_start">
+    <view catchtap="settleEvent" class="sorting_item {{sortIdx==1?'acitve':''}}" data-index="1" data-types="sort">智能排序</view>
+    <view catchtap="settleEvent" class="sorting_item {{sortIdx==5?'acitve':''}}" data-index="5" data-types="sort">距离最近</view>
+    <view catchtap="settleEvent" class="sorting_item {{sortIdx==9?'acitve':''}}" data-index="9" data-types="sort">浏览数量</view>
+    <view catchtap="settleEvent" class="sorting_item {{sortIdx==0?'acitve':''}}" data-index="0" data-types="sort">最新入驻</view>
+</view>
+<block wx:if="{{requestStatus}}">
+    <view class="data_list_box bgfff">
+        <include src="/pages/commonPage/settleIn/listItem.wxml" wx:if="{{list.length>0}}"></include>
+        <view class="noComment" wx:else>暂无数据</view>
+    </view>
+    <view class="noNore pos" wx:if="{{!hasNext&&list.length!=0}}">
+        <view class="noNore1"></view>
+        <view class="noNore2 f32 c9 txt_center">没有更多数据了</view>
+    </view>
+</block>

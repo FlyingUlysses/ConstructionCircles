@@ -1,0 +1,8 @@
+<include src="/pages/commonPage/common.wxml"></include>
+<block wx:if="{{requestStatus}}">
+    <view class="bgfff" wx:if="{{info.zhuanlanList.length>0}}">
+        <view wx:for="{{info.zhuanlanList}}">
+            <include src="zhuanlanList1.wxml"></include>
+        </view>
+    </view>
+</block>

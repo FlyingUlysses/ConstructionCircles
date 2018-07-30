@@ -1,0 +1,29 @@
+<view class="bgfff bbe9s">
+    <navigator hoverClass="none" url="/pages/newMovement/pages/newsDetail/newsDetail?newsId={{item.id}}&index={{index}}">
+        <view class="ptb10">
+            <view class="plr30 box_b">
+                <view class="f32 c3 mt10 mb20 clamp2">{{item.title}}</view>
+                <view class="pos">
+                    <image class="col1_large_img" mode="scaleToFill" src="{{item.attachments[0].original_url}}"></image>
+                    <view class="news_hb_btn" wx:if="{{item.hongbao_pool}}">福利</view>
+                </view>
+                <view class="flex_between flex_items f22 c9 ptb20">
+                    <view class="flex_start flex_items">
+                        <view class="text_overflow mr30" wx:if="{{item.author}}">{{item.author}}</view>
+                        <view>{{item.datetime}}</view>
+                    </view>
+                    <view class="flex_end flex_items">
+                        <view class="flex_start flex_items" wx:if="{{item.isviews==1}}">
+                            <image class="view_icon" src="https://www.haojian.cn/wximg/ad2.png"></image>
+                            <view class="ml10">{{item.views}}</view>
+                        </view>
+                        <view class="flex_start ml30 flex_items" wx:if="{{item.iscomments==1}}">
+                            <image class="pinglun_icon" src="https://www.haojian.cn/wximg/news/pinglun.png"></image>
+                            <view class="ml10">{{item.comment_count}}</view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </navigator>
+</view>

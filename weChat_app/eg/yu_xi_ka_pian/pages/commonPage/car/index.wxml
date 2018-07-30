@@ -1,0 +1,89 @@
+<block wx:if="{{alterRequestStatus}}">
+    <include src="/pages/commonPage/banner.wxml"></include>
+    <view wx:if="{{gonggao.title}}">
+        <navigator class="flex_start plr30 ptb10 box_b bgfff f24 flex_items pos overHidden" hoverClass="none" url="/pages/common/pages/hongbaoGonglue/hongbaoGonglue?types=car&t=1">
+            <view class="voice_icon1 bgfff pl30 flex_start flex_items bre9s">
+                <image class="flex_shrink voice_icon" src="https://www.haojian.cn/wximg/car/voice.png"></image>
+                <image class="flex_shrink voice_gg ml10" src="https://www.haojian.cn/wximg/car/gonggao.png"></image>
+            </view>
+            <view class="yy_GongGao cff5">
+                <view class="yy_marquee">
+                    <view animation="{{gonggao.animation}}" class="yy_marquee_text">{{gonggao.title}}</view>
+                </view>
+            </view>
+        </navigator>
+    </view>
+    <view class="box mt20 p30 box_b bgfff flex_around">
+        <view class="bix">
+            <navigator class="flex_between flex_items" hoverClass="none" url="/pages/car/pages/Findcar/Findcar?publishType=1">
+                <text>发布找车</text>
+                <image class="find_car_image" src="https://www.haojian.cn/wximg/car/car1.png"></image>
+            </navigator>
+        </view>
+        <view class="bix">
+            <navigator class="flex_between flex_items" hoverClass="none" url="/pages/car/pages/Findcar/Findcar?publishType=2">
+                <text>发布找人</text>
+                <image class="find_per_image" src="https://www.haojian.cn/wximg/car/Personal.png"></image>
+            </navigator>
+        </view>
+    </view>
+    <view class="bgfff mt20">
+        <view class="flex_around ptb30 bbe9s flex_items f28">
+            <view bindtap="carEvent" class="c_nav pos txt_center {{currentTab==index?'cff8':''}}" data-idx="{{index}}" data-types="navbarTap" wx:for="{{navbar}}" wx:key="unique">{{item}}</view>
+            <view class="pos txt_center c_nav">
+                <navigator class="flex_center flex_items plr30 box_b" hoverClass="none" url="/pages/car/pages/screen/screen">
+                    <image class="c_nav_image" src="https://www.haojian.cn/wximg/car/chosee.png"></image>
+                    <text class="ml10">筛选</text>
+                </navigator>
+            </view>
+        </view>
+    </view>
+    <block wx:if="{{requestStatus}}">
+        <view class="t4" wx:if="{{list.length>0}}">
+            <view class="mb20 bgfff pos" wx:for="{{list}}">
+                <navigator hoverClass="none" url="/pages/car/pages/detail/detail?id={{item.id}}">
+                    <image class="car_zhiding" src="https://www.haojian.cn/wximg/car/top.png" wx:if="{{item.isTop==1}}"></image>
+                    <view class="flex_start flex_items p30 box_b">
+                        <view class="vacancy cf f26 txt_center" style="background:#{{item.publishType==1?peise.mcolor:peise.acolor}}">{{item.publishType==1?'人找车':'车找人'}}</view>
+                        <view class="ml10 f30" wx:if="{{item.publishType==1}}">{{item.peopleNum}}人乘车</view>
+                        <view class="ml10 f28 c3" wx:else>{{item.peopleNum}}个空位</view>
+                    </view>
+                    <view class="flex_around f30 txt_center p30 box_b bbe9s">
+                        <view class="bold" style="width:262rpx">{{item.startPoint}}</view>
+                        <view class="Arrow flex_shrink">
+                            <view>
+                                <image class="Trip_image" src="https://www.haojian.cn/wximg/car/arrow.png"></image>
+                            </view>
+                            <view class="txt_center f22 mt10" style="color:#{{peise.mcolor}}">{{item.Ymd}} {{item.His}}</view>
+                        </view>
+                        <view class="bold" style="width:226rpx">{{item.endPoint}}</view>
+                    </view>
+                </navigator>
+                <view class="f30 plr30 pb30 box_b">
+                    <view class="mt20" style="color:#454545" wx:if="{{item.viaPoint}}">途径地：{{item.viaPoint}}</view>
+                    <view class="mt20" style="color:#454545" wx:if="{{item.carModel}}">车型：{{item.carModel}}</view>
+                    <view class="mt20 f30 flex_start" style="color:#454545" wx:if="{{item.remark}}">
+                        <view class="flex_shrink">备注：</view>
+                        <view>{{item.remark}}</view>
+                    </view>
+                    <view class="bei mt20 flex_between flex_items">
+                        <view class="flex_start flex_items">
+                            <image class="bei_image" src="https://www.haojian.cn/wximg/car/sex{{item.gender}}.png"></image>
+                            <view class="ml15 f26 c9">{{item.uname}}</view>
+                            <view class="ml30 f26 c9">{{item.mobile}}</view>
+                        </view>
+                        <button bindtap="carEvent" class="contactbutton cf flex_around flex_items plr20 box_b" data-index="{{index}}" data-types="calling" style="background:#{{peise.mcolor}}">
+                            <image class="contactbutton_phone" src="https://www.haojian.cn/wximg/car/phone1.png"></image>
+                            <text class="ml10 f26">联系TA</text>
+                        </button>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="noDetail" wx:if="{{list.length==0}}">没有数据</view>
+        <view class="noNore pos" wx:if="{{!hasNext&&list.length!=0}}">
+            <view class="noNore1"></view>
+            <view class="noNore2 f32 c9 txt_center">没有更多数据了</view>
+        </view>
+    </block>
+</block>

@@ -1,0 +1,8 @@
+@import "../comment.wxss";
+
+@import "../../../__wuBaseWxss__/5.wxss";
+
+.bottom_1_2 {
+    width: 70%;
+    left: 30rpx;
+}

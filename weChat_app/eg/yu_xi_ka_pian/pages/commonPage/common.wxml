@@ -1,0 +1,42 @@
+<block wx:if="{{!contactStatus}}">
+    <view class="fudongBtn kfBtn1" wx:if="{{config.contactInfo.pos==='topLeft'}}">
+        <view bindtap="telEvent" class="fdContact" data-url="{{config.contactInfo.tel}}" wx:if="{{config.contactInfo.telDisplay==1}}">
+            <image class="kfBtn_img" mode="scaleToFill" src="{{config.contactInfo.telImg}}"></image>
+        </view>
+        <view class="fdContact" wx:if="{{config.contactInfo.contactDisplay==1}}">
+            <button class="kfBtn11" hoverClass="none" openType="contact">
+                <image class="kfBtn_img" mode="scaleToFill" src="{{config.contactInfo.contactImg}}"></image>
+            </button>
+        </view>
+    </view>
+    <view class="fudongBtn kfBtn2" wx:elif="{{config.contactInfo.pos==='topRight'}}">
+        <view bindtap="telEvent" class="fdContact" data-url="{{config.contactInfo.tel}}" wx:if="{{config.contactInfo.telDisplay==1}}">
+            <image class="kfBtn_img" mode="scaleToFill" src="{{config.contactInfo.telImg}}"></image>
+        </view>
+        <view class="fdContact" wx:if="{{config.contactInfo.contactDisplay==1}}">
+            <button class="kfBtn11" hoverClass="none" openType="contact">
+                <image class="kfBtn_img" mode="scaleToFill" src="{{config.contactInfo.contactImg}}"></image>
+            </button>
+        </view>
+    </view>
+    <view class="fudongBtn kfBtn3" wx:elif="{{config.contactInfo.pos==='bottomLeft'}}">
+        <view bindtap="telEvent" class="fdContact" data-url="{{config.contactInfo.tel}}" wx:if="{{config.contactInfo.telDisplay==1}}">
+            <image class="kfBtn_img" mode="scaleToFill" src="{{config.contactInfo.telImg}}"></image>
+        </view>
+        <view class="fdContact" wx:if="{{config.contactInfo.contactDisplay==1}}">
+            <button class="kfBtn11" hoverClass="none" openType="contact">
+                <image class="kfBtn_img" mode="scaleToFill" src="{{config.contactInfo.contactImg}}"></image>
+            </button>
+        </view>
+    </view>
+    <view class="fudongBtn kfBtn4" wx:elif="{{config.contactInfo.pos==='rightCenter'}}">
+        <view bindtap="telEvent" class="fdContact" data-url="{{config.contactInfo.tel}}" wx:if="{{config.contactInfo.telDisplay==1}}">
+            <image class="kfBtn_img" mode="scaleToFill" src="{{config.contactInfo.telImg}}"></image>
+        </view>
+        <view class="fdContact" wx:if="{{config.contactInfo.contactDisplay==1}}">
+            <button class="kfBtn11" hoverClass="none" openType="contact">
+                <image class="kfBtn_img" mode="scaleToFill" src="{{config.contactInfo.contactImg}}"></image>
+            </button>
+        </view>
+    </view>
+</block>

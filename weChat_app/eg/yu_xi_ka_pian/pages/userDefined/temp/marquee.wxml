@@ -1,0 +1,5 @@
+<view class="userInfoGongGao" style="background:{{marquee.bgcolor}};font-size:{{marquee.size}};font-weight: {{marquee.weight}};color: {{marquee.color}}">
+    <view class="marquee_box">
+        <view animation="{{gonggao.animation}}" class="marquee_text">{{gonggao.title}}</view>
+    </view>
+</view>

@@ -1,0 +1,26 @@
+<block wx:if="{{item.data.display==='show'}}">
+    <view class="but" style="height:{{item.data.height1}}px" wx:if="{{item.data.url==='contact'}}">
+        <button class="contactBtn" openType="contact" style="width:{{item.data.width1}}px;height:{{item.data.height1}}px;line-height:{{item.data.height1}}px">
+            <view class="butc" wx:if="{{item.data.align=='center'}}">
+                <include src="/pages/userDefined/temp/btn.wxml"></include>
+            </view>
+            <view class="butl" wx:elif="{{item.data.align=='left'}}">
+                <include src="/pages/userDefined/temp/btn.wxml"></include>
+            </view>
+            <view class="butr" wx:elif="{{item.data.align=='right'}}">
+                <include src="/pages/userDefined/temp/btn.wxml"></include>
+            </view>
+        </button>
+    </view>
+    <view class="but" style="height:{{item.data.height1}}px" wx:else>
+        <view bindtap="openWindow" class="butc" data-url="{{item.data.url}}" wx:if="{{item.data.align=='center'}}">
+            <include src="/pages/userDefined/temp/btn.wxml"></include>
+        </view>
+        <view bindtap="openWindow" class="butl" data-url="{{item.data.url}}" wx:elif="{{item.data.align=='left'}}">
+            <include src="/pages/userDefined/temp/btn.wxml"></include>
+        </view>
+        <view bindtap="openWindow" class="butr" data-url="{{item.data.url}}" wx:elif="{{item.data.align=='right'}}">
+            <include src="/pages/userDefined/temp/btn.wxml"></include>
+        </view>
+    </view>
+</block>
