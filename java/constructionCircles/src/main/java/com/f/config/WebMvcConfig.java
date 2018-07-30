@@ -15,7 +15,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupp
  * @date:   2018年7月27日
  * @Description:TODO
  */
-@EnableWebMvc
 @Configuration
 public class WebMvcConfig extends WebMvcConfigurationSupport {
 	
@@ -25,7 +24,7 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		//自定义拦截器，添加拦截路径和排除拦截路径 
-		registry.addInterceptor(managerInterceptor).addPathPatterns("/api/**").excludePathPatterns("/manager/login.ws");
+		registry.addInterceptor(managerInterceptor).addPathPatterns("/manager/**.ws").excludePathPatterns("/manager/login.ws");
 	}
 	
 	/**

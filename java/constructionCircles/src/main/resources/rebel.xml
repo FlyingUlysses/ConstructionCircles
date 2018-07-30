@@ -7,18 +7,18 @@
 <application generated-by="eclipse" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.zeroturnaround.com" xsi:schemaLocation="http://www.zeroturnaround.com http://update.zeroturnaround.com/jrebel/rebel-2_1.xsd">
 
 	<classpath>
-		<dir name="D:/code/constructionCircles/target/classes">
+		<dir name="D:/gitcode/ConstructionCircles/java/constructionCircles/target/classes">
 		</dir>
 	</classpath>
 
 	<web>
 		<link target="/">
-			<dir name="D:/code/constructionCircles/target/m2e-wtp/web-resources">
+			<dir name="D:/gitcode/ConstructionCircles/java/constructionCircles/target/m2e-wtp/web-resources">
 				<exclude name="/"/>
 			</dir>
 		</link>
 		<link target="/">
-			<dir name="D:/code/constructionCircles/src/main/webapp">
+			<dir name="D:/gitcode/ConstructionCircles/java/constructionCircles/src/main/webapp">
 			</dir>
 		</link>
 	</web>

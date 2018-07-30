@@ -35,4 +35,10 @@ public class LoginController {
 		return res;
 	}
 	
+	@ResponseBody
+	@RequestMapping("/manager/aaa")
+	public String aaa() {
+		return "aaa";
+	}
+	
 }

@@ -21,7 +21,7 @@ public class LoginController {
 	private UserService userService;
 	
 	@ResponseBody
-	@RequestMapping("/index")
+	@RequestMapping("index")
 	public UserEntity index() {
 		UserEntity userById = userService.getUserById(1);
 		return userById;

@@ -17,7 +17,7 @@ import com.f.service.UserService;
  */
 @RequestMapping("user")
 @Controller
-public class WeChatUserController {
+public class UserController {
 	
 	@Autowired
 	private UserService userService;
