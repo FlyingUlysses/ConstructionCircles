@@ -1,0 +1,14 @@
+
+.userinfo {
+  margin:10%;
+  margin-top:15%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.userinfo-avatar {
+  width:256rpx;
+  height:256rpx;
+  margin:40rpx;
+  border-radius:50%;
+}

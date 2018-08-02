@@ -1,0 +1,14 @@
+<view id="userinfo" class='userinfo' >
+    <view >
+      <image class="userinfo-avatar" src='http://img2.imgtn.bdimg.com/it/u=4195553116,3445843052&fm=27&gp=0.jpg'></image>
+    </view>
+    <view>
+      <text>小酱油</text>
+    </view>
+    <view>
+      性别：男
+    </view>
+    <view>
+      年龄：24
+    </view>
+</view>

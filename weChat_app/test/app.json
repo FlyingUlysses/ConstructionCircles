@@ -1,0 +1,30 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/logs/logs"
+  ],
+  "tabBar": {
+    "color": "#8a8a8a",
+    "selectedColor": "#1296db",
+    "list": [
+      {
+        "selectedIconPath": "icon/add_user_sel.png",
+        "iconPath": "icon/add_user_none.png",
+        "pagePath": "pages/index/index",
+        "text": "预约"
+      },
+      {
+        "selectedIconPath": "icon/add_history_sel.png",
+        "iconPath": "icon/add_history_none.png",
+        "pagePath": "pages/logs/logs",
+        "text": "历史"
+      }
+    ]
+  },
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTitleText": "建筑圈",
+    "navigationBarTextStyle":"black"
+  }
+}
